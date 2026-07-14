@@ -1,0 +1,1 @@
+image_index = 2*number + (global.turn = "player" && global.selected_button = number)

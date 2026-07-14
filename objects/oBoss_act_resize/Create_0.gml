@@ -1,0 +1,1 @@
+global.base_button_depth = depth
