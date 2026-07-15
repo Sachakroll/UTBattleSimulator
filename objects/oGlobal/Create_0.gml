@@ -32,6 +32,25 @@ global.player_max_hp = 16 + 4*(global.player_lv)
 global.player_hp = global.player_max_hp
 global.boss_hp = global.boss_max_hp
 
+// Manette
+
+global.gamepad_detected = true
+global.gamepad = -1
+global.gamepad_name = "error"
+global.gamepad_maps = {
+	_z : 1,
+	_x : 2,
+	_h : 3,
+	_v : 4,
+	inv_v : 0
+}
+global.gamepad_deadzone = 0.3
+
+global.prev_input_l = 0
+global.prev_input_r = 0
+global.prev_input_u = 0
+global.prev_input_d = 0
+
 // Son et musique
 
 global.music = -1

@@ -67,7 +67,7 @@ if global.turn = "boss"
 	{
 		if other.x + 5-other.collision_tolerance > collision_x1
 		&& other.x - 4+other.collision_tolerance < collision_x2
-		&& other.y + 5-other.collision_tolerance > collision_y1
+		&& other.y + 5-other.down_collision_tolerance > collision_y1
 		&& other.y - 4+other.collision_tolerance < collision_y2
 		{
 			if !enable_colors

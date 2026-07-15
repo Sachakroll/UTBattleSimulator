@@ -2,8 +2,9 @@
 
 if room = Launch
 {
+	if launch_timer != 0
+	{if launch_timer = launch_time || pressed("z", 0) {room_goto(Menu)}}
 	launch_timer ++
-	if launch_timer = launch_time || pressed("z", 0) {room_goto(Menu)}
 }
 
 // Plein écran

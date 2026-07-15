@@ -257,23 +257,45 @@ if global.turn = "boss"
 	// Atk bone hor
 	if global.selected_boss_action = "atk bone hor" && mouse_y <= box_bottom+atk_bone_mouse_tolerance
 	&& mouse_y >= box_bottom-box_height-atk_bone_mouse_tolerance
-	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
+	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "bottom"
-		if mouse_check_button_pressed(mb_right) {var _base = "top"}
+		if mouse_check_button_pressed(mb_right) {_base = "top"}
+		if mouse_check_button_pressed(mb_middle) {_base = "both"}
+		
 		var my = mouse_y
 		if my < box_bottom-box_height+atk_bone_spawn_boxdist {my = box_bottom-box_height+atk_bone_spawn_boxdist}
 		if my > box_bottom-atk_bone_spawn_boxdist {my = box_bottom-atk_bone_spawn_boxdist}
 		
-		if mouse_x <= 160-(box_width/2)+atk_bone_mouse_tolerance
+		var _dir = 0
+		if mouse_x <= 160-(box_width/2)+atk_bone_mouse_tolerance {_dir = 1}
+		if mouse_x >= 160+(box_width/2)-atk_bone_mouse_tolerance {_dir = -1}
+		
+		if _dir != 0
 		{
-			instance_create_layer(160-(box_width/2), my, "Bullets", oAtk, 
-			{type : "bone hor", dir : 1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
-		}
-		if mouse_x >= 160+(box_width/2)-atk_bone_mouse_tolerance
-		{
-			instance_create_layer(160+(box_width/2), my, "Bullets", oAtk, 
-			{type : "bone hor", dir : -1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
+			var botm_my = my
+			var top_my = my
+			if _base = "both"
+			{
+				botm_my += atk_bone_middleclick_dist
+				if botm_my > box_bottom-atk_bone_spawn_boxdist
+				{botm_my = box_bottom-atk_bone_spawn_boxdist
+					top_my = botm_my - 2*atk_bone_middleclick_dist}
+				else
+				{
+					top_my -= atk_bone_middleclick_dist
+					if top_my < box_bottom-box_height+atk_bone_spawn_boxdist
+					{top_my = box_bottom-box_height+atk_bone_spawn_boxdist
+						botm_my = top_my + 2*atk_bone_middleclick_dist}
+				}
+			}
+		
+			if _base = "bottom" || _base = "both" {
+			instance_create_layer(160-_dir*(box_width/2), botm_my, "Bullets", oAtk, 
+			{type : "bone hor", dir : _dir, base : "bottom", color : global.boss_atk_color})}
+			if _base = "top" || _base = "both" {
+			instance_create_layer(160-_dir*(box_width/2), top_my, "Bullets", oAtk, 
+			{type : "bone hor", dir : _dir, base : "top", color : global.boss_atk_color})}
 		}
 	}
 	
@@ -281,23 +303,45 @@ if global.turn = "boss"
 	
 	if global.selected_boss_action = "atk bone vert" && mouse_x <= 160+(box_width/2)+atk_bone_mouse_tolerance
 	&& mouse_x >= 160-(box_width/2)-atk_bone_mouse_tolerance
-	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
+	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "left"
-		if mouse_check_button_pressed(mb_right) {var _base = "right"}
+		if mouse_check_button_pressed(mb_right) {_base = "right"}
+		if mouse_check_button_pressed(mb_middle) {_base = "both"}
+		
 		var mx = mouse_x
 		if mx < 160-(box_width/2)+atk_bone_spawn_boxdist {mx = 160-(box_width/2)+atk_bone_spawn_boxdist}
 		if mx > 160+(box_width/2)-atk_bone_spawn_boxdist {mx = 160+(box_width/2)-atk_bone_spawn_boxdist}
 		
-		if mouse_y <= box_bottom-box_height+atk_bone_mouse_tolerance
+		var _dir = 0
+		if mouse_y <= box_bottom-box_height+atk_bone_mouse_tolerance {_dir = 1}
+		if mouse_y >= box_bottom-atk_bone_mouse_tolerance {_dir = -1}
+		
+		if _dir != 0
 		{
-			instance_create_layer(mx, box_bottom-box_height, "Bullets", oAtk, 
-			{type : "bone vert", dir : 1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
-		}
-		if mouse_y >= box_bottom-atk_bone_mouse_tolerance
-		{
-			instance_create_layer(mx, box_bottom, "Bullets", oAtk, 
-			{type : "bone vert", dir : -1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
+			var left_mx = mx
+			var right_mx = mx
+			if _base = "both"
+			{
+				right_mx += atk_bone_middleclick_dist
+				if right_mx > 160+(box_width/2)-atk_bone_spawn_boxdist
+				{right_mx = 160+(box_width/2)-atk_bone_spawn_boxdist
+					left_mx = right_mx - 2*atk_bone_middleclick_dist}
+				else
+				{
+					left_mx -= atk_bone_middleclick_dist
+					if left_mx < 160-(box_width/2)+atk_bone_spawn_boxdist
+					{left_mx = 160-(box_width/2)+atk_bone_spawn_boxdist
+						right_mx = left_mx + 2*atk_bone_middleclick_dist}
+				}
+			}
+		
+			if _base = "left" || _base = "both" {
+			instance_create_layer(left_mx, box_bottom-((_dir+1)/2)*box_height, "Bullets", oAtk, 
+			{type : "bone vert", dir : _dir, base : "left", color : global.boss_atk_color})}
+			if _base = "right" || _base = "both" {
+			instance_create_layer(right_mx, box_bottom-((_dir+1)/2)*box_height, "Bullets", oAtk, 
+			{type : "bone vert", dir : _dir, base : "right", color : global.boss_atk_color})}
 		}
 	}
 }

@@ -61,10 +61,11 @@ global.soulmodes_count = sprite_get_number(sBoss_act_soul)
 global.boss_atk_color = 0
 global.boss_atk_colors_count = sprite_get_number(sBoss_act_atkcolor)
 
-// Atk bone hor
+// Atk bone hor/ver
 
 atk_bone_mouse_tolerance = 5
 atk_bone_spawn_boxdist = 9
+atk_bone_middleclick_dist = 13
 
 // Action resize
 

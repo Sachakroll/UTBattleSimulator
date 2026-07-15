@@ -11,6 +11,7 @@ jump_v = 1.42
 gravity_acc = 0.0791015625
 
 collision_tolerance = 0
+down_collision_tolerance = 1
 dmg_invulnerability_time = 120
 dmg_timer = dmg_invulnerability_time
 dmg_flickering_period = 12 // nombre pair

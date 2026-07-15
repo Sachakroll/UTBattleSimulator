@@ -30,7 +30,7 @@ if global.menu_selected_option = 2 && pressed("z", 0)
 }
 if global.menu_selected_option = 3 && pressed("z", 0)
 {
-	//oFade.fade(30, Settings_gamepad)
+	oFade.fade(8, Settings_gamepad)
 	audio_play_sound(snd_select, 1, 0, 1)
 }
 
