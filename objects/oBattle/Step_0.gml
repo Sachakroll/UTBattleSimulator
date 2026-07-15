@@ -268,12 +268,12 @@ if global.turn = "boss"
 		if mouse_x <= 160-(box_width/2)+atk_bone_mouse_tolerance
 		{
 			instance_create_layer(160-(box_width/2), my, "Bullets", oAtk, 
-			{type : "bone hor", dir : 1*(1+mouse_check_button(mb_middle)), base : _base})
+			{type : "bone hor", dir : 1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
 		}
 		if mouse_x >= 160+(box_width/2)-atk_bone_mouse_tolerance
 		{
 			instance_create_layer(160+(box_width/2), my, "Bullets", oAtk, 
-			{type : "bone hor", dir : -1*(1+mouse_check_button(mb_middle)), base : _base})
+			{type : "bone hor", dir : -1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
 		}
 	}
 	
@@ -292,12 +292,12 @@ if global.turn = "boss"
 		if mouse_y <= box_bottom-box_height+atk_bone_mouse_tolerance
 		{
 			instance_create_layer(mx, box_bottom-box_height, "Bullets", oAtk, 
-			{type : "bone vert", dir : 1*(1+mouse_check_button(mb_middle)), base : _base})
+			{type : "bone vert", dir : 1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
 		}
 		if mouse_y >= box_bottom-atk_bone_mouse_tolerance
 		{
 			instance_create_layer(mx, box_bottom, "Bullets", oAtk, 
-			{type : "bone vert", dir : -1*(1+mouse_check_button(mb_middle)), base : _base})
+			{type : "bone vert", dir : -1*(1+mouse_check_button(mb_middle)), base : _base, color : global.boss_atk_color})
 		}
 	}
 }

@@ -3,6 +3,7 @@ if type = "bone hor"
 	x += dir
 	
 	atk_dmg = 3
+	enable_colors = true
 	collision_x1 = x - 2
 	collision_x2 = x + 3
 	
@@ -33,6 +34,7 @@ if type = "bone vert"
 	y += dir
 	
 	atk_dmg = 3
+	enable_colors = true
 	collision_y1 = y - 2
 	collision_y2 = y + 3
 	
@@ -56,7 +58,16 @@ if type = "bone vert"
 // Dessiner
 
 if !instance_exists(drawer)
-{drawer = instance_create_layer(x, y, "Bullets", oAtk_drawer, {owner : id})}
+{
+	if enable_colors
+	{
+		var draw_colr = c_white
+		if color = 1 {draw_colr = make_colour_rgb(0, 162, 232)}
+		if color = 2 {draw_colr = make_colour_rgb(255, 159, 41)}
+		drawer = instance_create_layer(x, y, "Bullets", oAtk_drawer, {owner : id, color : draw_colr})
+	}
+	else {drawer = instance_create_layer(x, y, "Bullets", oAtk_drawer, {owner : id})}
+}
 
 // Destuction
 

@@ -58,6 +58,8 @@ boss_displayed_hp = global.boss_hp
 global.selected_boss_action = 0
 global.soulmode = 0
 global.soulmodes_count = sprite_get_number(sBoss_act_soul)
+global.boss_atk_color = 0
+global.boss_atk_colors_count = sprite_get_number(sBoss_act_atkcolor)
 
 // Atk bone hor
 

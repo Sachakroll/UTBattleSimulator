@@ -5,5 +5,5 @@ if mouse_check_button_pressed(mb_left) && global.turn = "boss"
 	global.selected_boss_action = action
 }
 
-image_index = (global.selected_boss_action = action)
+image_index = (global.selected_boss_action = action) + 2*enable_colors*global.boss_atk_color
 depth = global.base_button_depth - 2*(global.selected_boss_action = action)

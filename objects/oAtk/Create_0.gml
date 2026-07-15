@@ -1,4 +1,5 @@
 drawer = noone
+enable_colors = false
 
 collision_x1 = 0
 collision_y1 = 0

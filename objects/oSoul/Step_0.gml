@@ -10,11 +10,10 @@ if global.turn = "boss"
 		vsp = move_y}
 	if global.soulmode = 1
 	{
-		if y + vsp > oBattle.box_bottom - wall_dist - 1 {
+		if y + vsp >= oBattle.box_bottom - wall_dist - 2
+		{
 			jump_timer = 0
-			if pressed("u", 0) {
-				jumping = true
-				}
+			if pressed("u", 0) {jumping = true}
 		}
 		if jumping
 		{
@@ -28,9 +27,16 @@ if global.turn = "boss"
 		if keyboard_check_released(vk_up) || !pressed("u", 1) {jumping = false
 			if gravity_speed = -jump_v {gravity_speed = -jump_v/2}}
 		
-		if gravity_speed > 0 && gravity_speed < 0.28
-		{gravity_speed += 0.035}
-		else {gravity_speed += gravity_acc}
+		if y >= oBattle.box_bottom - wall_dist - 2
+		{
+			if !jumping {gravity_speed = 0}
+			}
+		else
+		{
+			if gravity_speed > 0 && gravity_speed < 0.28
+			{gravity_speed += 0.035}
+			else {gravity_speed += gravity_acc}
+		}
 		
 		hsp = move_x
 		vsp = gravity_speed
@@ -63,7 +69,16 @@ if global.turn = "boss"
 		&& other.x - 4+other.collision_tolerance < collision_x2
 		&& other.y + 5-other.collision_tolerance > collision_y1
 		&& other.y - 4+other.collision_tolerance < collision_y2
-		{other.damage_soul(atk_dmg)}
+		{
+			if !enable_colors
+			{other.damage_soul(atk_dmg)}
+			else
+			{
+				if color = 0 || (color = 1 && (other.hsp != 0 || other.vsp != 0))
+				|| (color = 2 && other.hsp = 0 && other.vsp = 0)
+				{other.damage_soul(atk_dmg)}
+			}
+		}
 	}
 }
 
