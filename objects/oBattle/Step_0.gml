@@ -156,12 +156,45 @@ if global.turn = "player"
 	
 	// Item
 	if global.selected_button = 2 && pressed("z", 0) && player_current_action = 0 && oFade.fade_timer = -1
-	{if !array_equals(global.inventory, ["", "", "", ""]) {player_current_action = "to item"}
+	{if !array_equals(global.inventory, []) {player_current_action = "to item"
+		selected_item = 0}
 		audio_play_sound(snd_select, 1, 0, 1)}
 	
 	if player_current_action = "item"
 	{
 		if pressed("x", 0) {player_current_action = 0}
+		if pressed("r", 0) || pressed("l", 0) || pressed("d", 0) || pressed("u", 0) {audio_play_sound(snd_choice, 1, 0, 1)}
+		if pressed("r", 0) && !(selected_item mod 2 = 0 && selected_item = array_length(global.inventory)-1)
+		{
+			if selected_item mod 2 = 0 {selected_item ++}
+			else {if selected_item mod 2 = 1 {selected_item += 3}}
+		}
+		if pressed("l", 0)
+		{
+			if selected_item mod 2 = 0 {selected_item -= 3}
+			else {if selected_item mod 2 = 1 {selected_item --}}
+		}
+		if (pressed("d", 0) || pressed("u", 0)) && !(selected_item mod 4 < 2 && (selected_item = array_length(global.inventory)-1 || selected_item = array_length(global.inventory)-2))
+		{
+			if selected_item mod 4 < 2 {selected_item += 2}
+			else {if selected_item mod 4 >= 2 {selected_item -= 2}}
+		}
+		if selected_item >= array_length(global.inventory) {selected_item -= 4*ceil(array_length(global.inventory)/4)}
+		if selected_item < 0 {selected_item += 4*ceil(array_length(global.inventory)/4)}
+		if selected_item >= array_length(global.inventory)
+		{for (var i = 0 ; i <= global.player_items ; i++) {if selected_item >= array_length(global.inventory) {selected_item-=2} else {break}}}
+		
+		if selected_item < 0 {game_end()}
+		
+		if pressed("z", 0)
+		{
+			audio_play_sound(snd_select, 1, 0, 1)
+			player_current_action = 0
+			global.turn = "dialog"
+			current_dialog = item_dialog(selected_item)
+			rendered_characters = [0, 0, 0]
+			heal_timer = 0
+		}
 	}
 	
 	// Mercy
@@ -392,4 +425,20 @@ if global.player_hp <= 0
 	global.death_soul_x = oSoul.x
 	global.death_soul_y = oSoul.y
 	room_goto(Death)
+}
+
+// Soin
+
+if heal_timer != - 1
+{
+	heal_timer ++
+	if heal_timer >= heal_delay
+	{
+		heal_timer = -1
+		global.player_hp += item_heal_amount(global.inventory[selected_item])
+		if global.player_hp > global.player_max_hp {global.player_hp = global.player_max_hp}
+		array_delete(global.inventory, selected_item, 1)
+		audio_play_sound(snd_heal, 1, 0, 1)
+		selected_item = 0
+	}
 }

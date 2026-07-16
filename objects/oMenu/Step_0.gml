@@ -4,7 +4,7 @@ if oFade.fade_timer = -1 {
 
 if pressed("z", 0) && global.menu_selected_option = 1
 {
-	oFade.fade(30, Battle)
+	oFade.fade(24, Battle)
 	audio_play_sound(snd_select, 1, 0, 1)
 }
 

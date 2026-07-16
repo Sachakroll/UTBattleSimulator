@@ -11,3 +11,11 @@ function damage(bar_pos)
 	
 	return int64(_exp*rand*global.atk_power/10)
 }
+
+function item_heal_amount(item)
+{
+	switch item
+	{
+		default : return 8
+	}
+}

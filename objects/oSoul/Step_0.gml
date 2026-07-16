@@ -99,6 +99,11 @@ if global.turn = "player"
 		y = global.text_starting_y + 6
 		if oBattle.selected_mercy = 1
 		{y = global.text_starting_y + 6 + global.dialog_interline}
+		if oBattle.player_current_action = "item"
+		{
+			x = global.text_starting_x + 6 + oBattle.item_x_shift*(oBattle.selected_item mod 2 = 1)
+			y = global.text_starting_y + 6 + global.dialog_interline*(oBattle.selected_item mod 4 >= 2)
+		}
 	}
 }
 

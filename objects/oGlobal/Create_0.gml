@@ -22,8 +22,7 @@ global.death_soul_y = 0
 
 global.player_lv = 1
 global.atk_strength = 20
-global.inventory = ["", "", "", ""]
-global.player_max_items = array_length(global.inventory)
+global.player_max_items = 8
 
 global.boss_turn_seconds = 30
 global.boss_max_hp = 1200

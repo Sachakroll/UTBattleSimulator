@@ -1,10 +1,10 @@
 // Nom
 
 var colr = c_white
-print("---£££Gamepad config£££---", 77, 28, colr)
+print("---£££Gamepad config£££---", 77, 27, colr)
 
 if selected_option = 0 && !configurating {colr = c_yellow}
-print("Exit", 145, 62, colr)
+print("Exit", 145, 58, colr)
 colr = c_white
 
 // Options
@@ -15,7 +15,7 @@ if selected_option = 1 && !configurating {colr = c_yellow}
 if !global.gamepad_detected {colr = make_colour_rgb(95, 95, 95)
 	_txt = "No gamepad"
 	_x = 120}
-print(_txt, _x, 84, colr)
+print(_txt, _x, 80, colr)
 colr = c_white
 
 // Configuration

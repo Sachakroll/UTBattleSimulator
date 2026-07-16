@@ -59,9 +59,9 @@ function s_font_spacing(_char)
 function check_dialog()
 {
 	if global.boss_name = "Papyrus"
-	{return ["* PAPYRUS 8 ATK 2 DEF", "* He likes to say:", "µ ''Nyeh heh heh!''"]}
+	{return ["* PAPYRUS 8 ATK 2 DEF£", "* He likes to say:", "µ ''Nyeh heh heh!''"]}
 	if global.boss_name = "Toriel"
-	{return ["* TORIEL - ATK 80 DEF 80", "* Knows best for you.", ""]}
+	{return ["* TORIEL - ATK 80 DEF 80£", "* Knows best for you.", ""]}
 	
 	return ["[Missing text]", "", ""]
 }
@@ -129,8 +129,8 @@ function win_dialog()
 {
 	var _exp = boss_exp(global.boss_name)
 	if global.player_lv != 20 && round(random(1)) = 1 && _exp != "0"
-	{return ["* YOU WON!", "* You earned "+_exp+" XP and 0 gold.", "* Your LOVE increased."]}
-	else {return ["* YOU WON!", "* You earned "+_exp+" XP and 0 gold.", ""]}
+	{return ["* YOU WON!£", "* You earned "+_exp+" XP and 0 gold.£", "* Your LOVE increased."]}
+	else {return ["* YOU WON!£", "* You earned "+_exp+" XP and 0 gold.", ""]}
 }
 
 function flee_dialog()
@@ -153,4 +153,12 @@ function death_dialog(nb)
 		return ["You cannot give  ", "up just yet€€€", ""]
 		}
 	if nb = 2 {return [global.player_name+"!      ", "Stay determined€€€", ""]}
+}
+
+function item_dialog(item_index)
+{
+	if global.player_hp + item_heal_amount(oBattle.selected_item) >= global.player_max_hp
+	{return ["* You ate the "+global.inventory[item_index]+".££££", "* Your HP was maxed out.", ""]}
+	else
+	{return ["* You ate the "+global.inventory[item_index]+".££££", "* You recovered "+string(item_heal_amount(global.inventory[selected_item]))+" HP!", ""]}
 }

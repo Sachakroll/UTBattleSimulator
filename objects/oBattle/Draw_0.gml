@@ -132,6 +132,40 @@ if global.turn = "to boss"
 	colr, colr, colr, colr, 0)
 }
 
+// Items
+
+if global.turn = "player" && player_current_action = "item"
+{
+	var page_num = floor(selected_item/4) + 1
+	for (var i = 0 ; i < array_length(global.inventory) ; i++)
+	{
+		if floor(i/4) + 1 = page_num
+		{
+			var item_tab = string_to_number_array("* "+global.inventory[i])
+			var rendered_text_length = 0
+			for (var j = 0 ; j < array_length(item_tab) ; j++)
+			{
+				draw_sprite(sN_letters, item_tab[j], 
+				global.text_starting_x+soul_taken_text_space+rendered_text_length + item_x_shift*(i mod 2 = 1), 
+				global.text_starting_y + global.dialog_interline*(i mod 4 >= 2))
+				rendered_text_length += n_font_spacing(item_tab[j])
+			}
+		}
+	}
+	if array_length(global.inventory) > 4
+	{
+		var item_page_tab = string_to_number_array("PAGE "+string(int64(page_num)))
+		var rendered_text_length = 0
+		for (var i = 0 ; i < array_length(item_page_tab) ; i++)
+		{
+			draw_sprite(sN_letters, item_page_tab[i], 
+			global.text_starting_x+item_page_x_shift+rendered_text_length, 
+			global.text_starting_y+2*global.dialog_interline)
+			rendered_text_length += n_font_spacing(item_page_tab[i])
+		}
+	}
+}
+
 // Mercy
 
 if global.turn = "player" && player_current_action = "mercy"
@@ -178,7 +212,10 @@ if global.turn = "dialog" || (global.turn = "player" && player_current_action = 
 		&& (line != 2 || (rendered_characters[0] = array_length(dlg_tab[0]) && rendered_characters[1] = array_length(dlg_tab[1])))
 		{
 			if alternating_timer = 1 {array_set(rendered_characters, line, rendered_characters[line]+1)}
-			if mouth_timer = 0 {audio_play_sound(snd_text, 0, 0, 1)}
+			if mouth_timer = 0 {
+				if rendered_characters[line] = 0 {audio_play_sound(snd_text, 0, 0, 1)}
+				else {if dlg_tab[line][rendered_characters[line]-1] != 82
+					{audio_play_sound(snd_text, 0, 0, 1)}}}
 		}
 		for (var i = 0 ; i < rendered_characters[line] ; i++)
 		{

@@ -98,6 +98,19 @@ win_anim_time1 = 30
 win_anim_time2 = 60
 battle_ended = false
 
+// Inventaire
+
+global.inventory = []
+for (var i = 0 ; i < global.player_items ; i++)
+{
+	array_push(global.inventory, "Food "+string(i))
+}
+item_x_shift = 120
+item_page_x_shift = item_x_shift + soul_taken_text_space + 26
+selected_item = 0
+heal_timer = -1
+heal_delay = 18
+
 // Initialisation du dialogue
 
 current_dialog = random_dialog()

@@ -77,6 +77,7 @@
     {"id":{"name":"snd_done","path":"sounds/snd_done/snd_done.yy",},},
     {"id":{"name":"snd_dust","path":"sounds/snd_dust/snd_dust.yy",},},
     {"id":{"name":"snd_flee","path":"sounds/snd_flee/snd_flee.yy",},},
+    {"id":{"name":"snd_heal","path":"sounds/snd_heal/snd_heal.yy",},},
     {"id":{"name":"snd_hurt","path":"sounds/snd_hurt/snd_hurt.yy",},},
     {"id":{"name":"snd_intro","path":"sounds/snd_intro/snd_intro.yy",},},
     {"id":{"name":"snd_select","path":"sounds/snd_select/snd_select.yy",},},
