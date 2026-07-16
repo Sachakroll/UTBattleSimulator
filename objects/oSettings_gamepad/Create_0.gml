@@ -5,9 +5,11 @@ donemessage_time = 90
 sinceconfig_timer = donemessage_time+1
 global.config_done = false
 
-box_top = 120
-box_height = 80
-box_width = 80
+box_top = 112
+box_height = 88
+box_width = 96
+
+instance_create_layer(160, box_top-1+box_height/2, "Instances", oConfig_soul)
 
 // Fonction print
 

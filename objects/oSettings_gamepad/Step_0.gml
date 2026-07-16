@@ -57,7 +57,8 @@ if !configurating && sinceconfig_timer != 0
 	config_step = 0
 	
 	// Sélection des options
-	if pressed("u", 0) || pressed("d", 0) {selected_option = 1 - selected_option}
+	if pressed("u", 0) || pressed("d", 0) {selected_option = 1 - selected_option
+		audio_play_sound(snd_choice, 1, 0, 1)}
 	if !global.gamepad_detected {selected_option = 0
 		sinceconfig_timer = donemessage_time+1}
 

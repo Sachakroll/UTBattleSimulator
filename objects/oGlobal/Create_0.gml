@@ -23,18 +23,20 @@ global.death_soul_y = 0
 global.player_lv = 1
 global.atk_strength = 20
 global.inventory = ["", "", "", ""]
+global.player_max_items = array_length(global.inventory)
 
-global.boss_turn_seconds = 60
+global.boss_turn_seconds = 30
 global.boss_max_hp = 1200
 
 global.boss_turn_time = 60*global.boss_turn_seconds
 global.player_max_hp = 16 + 4*(global.player_lv)
 global.player_hp = global.player_max_hp
 global.boss_hp = global.boss_max_hp
+global.player_items = global.player_max_items
 
 // Manette
 
-global.gamepad_detected = true
+global.gamepad_detected = false
 global.gamepad = -1
 global.gamepad_name = "error"
 global.gamepad_maps = {
@@ -56,5 +58,5 @@ global.prev_input_d = 0
 global.music = -1
 previous_music = -1
 global.volume = 1
-global.enable_music = 1
+global.enable_music = 0
 global.ubervolume = 1

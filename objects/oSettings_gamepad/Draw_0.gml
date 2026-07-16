@@ -1,20 +1,21 @@
 // Nom
 
 var colr = c_white
+print("---£££Gamepad config£££---", 77, 28, colr)
 
 if selected_option = 0 && !configurating {colr = c_yellow}
-print("Exit", 107, 78, colr)
+print("Exit", 145, 62, colr)
 colr = c_white
 
 // Options
 
-var _txt = "Configure controller"
-var _x = 108
+var _txt = "Configure gamepad"
+var _x = 93
 if selected_option = 1 && !configurating {colr = c_yellow}
 if !global.gamepad_detected {colr = make_colour_rgb(95, 95, 95)
-	_txt = "No controller"
-	_x = 108}
-print(_txt, _x, 108, colr)
+	_txt = "No gamepad"
+	_x = 120}
+print(_txt, _x, 84, colr)
 colr = c_white
 
 // Configuration
@@ -31,7 +32,7 @@ if configurating
 if sinceconfig_timer < donemessage_time && !configurating
 {cf_txt = "Configuration done!"}
 
-print(cf_txt, 12, 214, c_white)
+print(cf_txt, 16, 213, c_white)
 
 // Box
 
