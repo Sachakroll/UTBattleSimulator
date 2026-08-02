@@ -246,6 +246,18 @@ if global.turn = "boss"
 		global.turn = "to player"
 		global.selected_boss_action = 0}
 	
+	// Vérifier que le boss n'est pas en train de cliquer sur l'interface, car dans ce cas il ne faudrait pas envoyer d'attaque
+	boss_action_was_just_selected = false
+	var gui_objects_to_check = [oBoss_act, oBoss_act_endturn, oBoss_act_resize, oBoss_act_atkcolor, oBoss_act_soulmode]
+	for (i = 0 ; i < array_length(gui_objects_to_check) ; i++)
+	{
+		with gui_objects_to_check[i] {if mouse_check_button_pressed(mb_left)
+			&& mouse_x >= x + 1 && mouse_x < x + sprite_width - 1
+			&& mouse_y >= y + 1 && mouse_y < y + sprite_height - 1
+			{other.boss_action_was_just_selected = true}
+		}
+	}
+	
 	// Redimensionner le cadre
 	if global.selected_boss_action = "resize"
 	{
@@ -289,7 +301,7 @@ if global.turn = "boss"
 	
 	// Atk bone hor
 	if global.selected_boss_action = "atk bone hor" && mouse_y <= box_bottom+atk_bone_mouse_tolerance
-	&& mouse_y >= box_bottom-box_height-atk_bone_mouse_tolerance
+	&& mouse_y >= box_bottom-box_height-atk_bone_mouse_tolerance && !boss_action_was_just_selected
 	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "bottom"
@@ -333,9 +345,8 @@ if global.turn = "boss"
 	}
 	
 	// Atk bone vert
-	
 	if global.selected_boss_action = "atk bone vert" && mouse_x <= 160+(box_width/2)+atk_bone_mouse_tolerance
-	&& mouse_x >= 160-(box_width/2)-atk_bone_mouse_tolerance
+	&& mouse_x >= 160-(box_width/2)-atk_bone_mouse_tolerance && !boss_action_was_just_selected
 	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "left"
@@ -377,6 +388,24 @@ if global.turn = "boss"
 			{type : "bone vert", dir : _dir, base : "right", color : global.boss_atk_color})}
 		}
 	}
+	
+	// Atk fire
+	if global.selected_boss_action = "atk fire" && !boss_action_was_just_selected
+	{
+		if mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)
+		{
+			var _dir = -1
+			if mouse_check_button_pressed(mb_right) {_dir = 1}
+			instance_create_layer(160, box_bottom-box_height+4, "Bullets", oAtk, {type : "fire", dir : _dir})
+		}
+		if mouse_check_button_pressed(mb_middle)
+		{enable_wall_fire = 1 - enable_wall_fire}
+	}
+	if enable_wall_fire && global.boss_turn_timer mod wall_fire_summon_interval = 0
+	{
+		summon_wall_fire(-1)
+		summon_wall_fire(1)
+	}
 }
 
 // Passage du tour du joueur au tour du boss
@@ -415,6 +444,9 @@ if global.turn = "to player"
 		
 		current_dialog = random_dialog()
 		rendered_characters = [0, 0, 0]
+		
+		// Choses à désactiver à la fin du tour du boss
+		enable_wall_fire = false
 	}
 }
 

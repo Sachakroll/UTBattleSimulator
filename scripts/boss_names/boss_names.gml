@@ -11,6 +11,9 @@ function music_from_boss(_boss_name)
 {
 	if _boss_name = "Toriel" {return mus_boss_toriel}
 	if _boss_name = "Papyrus" {return mus_boss_papyrus}
+	if _boss_name = "Undyne" {return mus_boss_undyne}
+	if _boss_name = "Asgore" {return mus_boss_asgore}
+	if _boss_name = "Sans" {return mus_boss_sans}
 	return -1
 }
 

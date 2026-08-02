@@ -1,17 +1,17 @@
 if !instance_exists(owner) {instance_destroy()}
 else {
+	
+var _x = owner.x
+var _y = owner.y
+var surf_x = 160-oBattle.box_width/2
+var surf_y = oBattle.box_bottom-oBattle.box_height
+
+surface_set_target(global.surface)
 
 if owner.type = "bone hor"
 {
-	var _x = owner.x
-	var _y = owner.y
 	var sw = sprite_get_width(sAtk_bone_hor)
 	var sh = sprite_get_height(sAtk_bone_hor)
-	
-	var surf_x = 160-oBattle.box_width/2
-	var surf_y = oBattle.box_bottom-oBattle.box_height
-	
-	surface_set_target(global.surface)
 	
 	if owner.base = "bottom"
 	{
@@ -27,22 +27,12 @@ if owner.type = "bone hor"
 		draw_rectangle_colour(_x-2-surf_x, _y-surf_y, _x+3-surf_x, _y-h-surf_y, color, color, color, color, 0)
 		draw_sprite_ext(sAtk_bone_hor, 0, _x-surf_x, _y-h-surf_y, 1, 1, 0, color, 1)
 	}
-	
-	surface_reset_target()
-	draw_surface(global.surface, surf_x, surf_y)
 }
 
 if owner.type = "bone vert"
 {
-	var _x = owner.x
-	var _y = owner.y
 	var sw = sprite_get_width(sAtk_bone_vert)
 	var sh = sprite_get_height(sAtk_bone_vert)
-	
-	var surf_x = 160-oBattle.box_width/2
-	var surf_y = oBattle.box_bottom-oBattle.box_height
-	
-	surface_set_target(global.surface)
 	
 	if owner.base = "right"
 	{
@@ -58,10 +48,19 @@ if owner.type = "bone vert"
 		draw_rectangle_colour(_x-surf_x, _y-2-surf_y, _x-h-surf_x, _y+3-surf_y, color, color, color, color, 0)
 		draw_sprite_ext(sAtk_bone_vert, 1, _x-h-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 	}
-	
-	surface_reset_target()
-	draw_surface(global.surface, surf_x, surf_y)
 }
+
+if owner.type = "fire" || owner.type = "wall fire"
+{
+	var img = 0
+	if timer mod 4 >= 2 {img = 1}
+	draw_sprite(sAtk_fire, img, _x-surf_x, _y-surf_y)
+}
+
+// Dessiner la surface
+
+surface_reset_target()
+draw_surface(global.surface, surf_x, surf_y)
 
 // Debug
 

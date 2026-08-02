@@ -1,19 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"oAtk_drawer",
+  "%Name":"oBoss_act_fire",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oAtk_drawer",
+  "name":"oBoss_act_fire",
   "overriddenProperties":[],
   "parent":{
     "name":"Objets",
     "path":"folders/Objets.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oBoss_act",
+    "path":"objects/oBoss_act/oBoss_act.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -31,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sBoss_act_fire",
+    "path":"sprites/sBoss_act_fire/sBoss_act_fire.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

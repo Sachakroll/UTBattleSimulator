@@ -1,7 +1,3 @@
-// Sélection du boss
-
-global.boss_name = boss_get_name(global.selected_boss)
-
 // Sprite et thème du boss
 
 if global.boss_name = "Toriel" {sprite_index = sBoss_toriel}
@@ -13,8 +9,8 @@ if global.ubervolume = 1 && global.enable_music {global.music = music_from_boss(
 
 if global.turn = "atk" && oBattle.atk_step = 1
 {
-	timer ++
-	x = base_x + 3*(2*(timer mod 6 >= 3)-1)*(1-oBattle.atk_end_timer/oBattle.atk_end_duration)
+	dmg_timer ++
+	x = base_x + 3*(2*(dmg_timer mod 6 >= 3)-1)*(1-oBattle.atk_end_timer/oBattle.atk_end_duration)
 }
 else {x = base_x}
 

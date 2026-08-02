@@ -60,12 +60,26 @@ global.soulmode = 0
 global.soulmodes_count = sprite_get_number(sBoss_act_soul)
 global.boss_atk_color = 0
 global.boss_atk_colors_count = sprite_get_number(sBoss_act_atkcolor)
+boss_action_was_just_selected = false
 
 // Atk bone hor/ver
 
 atk_bone_mouse_tolerance = 5
 atk_bone_spawn_boxdist = 9
-atk_bone_middleclick_dist = 13
+atk_bone_middleclick_dist = 14
+
+// Atk fire
+
+enable_wall_fire = false
+wall_fire_summon_interval = 10
+wall_fire_min_vsp = 1/3
+wall_fire_max_vsp = 1
+function summon_wall_fire(side)
+{
+	var random_vsp = random_range(-wall_fire_max_vsp, wall_fire_max_vsp)
+	if abs(random_vsp) < wall_fire_min_vsp {random_vsp = sign(random_vsp)*wall_fire_min_vsp}
+	instance_create_layer(160+side*box_width/2-side*8, box_bottom-box_height/4, "Bullets", oAtk, {type : "wall fire", vert_speed : random_vsp, wall_side : side})
+}
 
 // Action resize
 
