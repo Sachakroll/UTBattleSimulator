@@ -16,12 +16,14 @@ dmg_invulnerability_time = 120
 dmg_timer = dmg_invulnerability_time
 dmg_flickering_period = 12 // nombre pair
 
-function damage_soul(dealt_dmg)
+function damage_soul(dealt_dmg, eventual_object_to_destroy)
 {
 	if dmg_timer > dmg_invulnerability_time
 	{
 		global.player_hp -= dealt_dmg
 		audio_play_sound(snd_dmg, 12, 0, 1)
 		dmg_timer = 0
+		if eventual_object_to_destroy != noone
+		{eventual_object_to_destroy.destroy_self()}
 	}
 }

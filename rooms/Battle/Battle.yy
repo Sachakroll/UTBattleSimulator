@@ -18,6 +18,7 @@
     {"name":"inst_6D2A70C0","path":"rooms/Battle/Battle.yy",},
     {"name":"inst_57D59C08","path":"rooms/Battle/Battle.yy",},
     {"name":"inst_7BA51E7E","path":"rooms/Battle/Battle.yy",},
+    {"name":"inst_3AF57968","path":"rooms/Battle/Battle.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -37,6 +38,7 @@
         {"$GMRInstance":"v4","%Name":"inst_6D2A70C0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6D2A70C0","objectId":{"name":"oBoss_act_atkcolor","path":"objects/oBoss_act_atkcolor/oBoss_act_atkcolor.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":61.0,"y":0.0,},
         {"$GMRInstance":"v4","%Name":"inst_57D59C08","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_57D59C08","objectId":{"name":"oBoss_act_endturn","path":"objects/oBoss_act_endturn/oBoss_act_endturn.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":75.0,"y":0.0,},
         {"$GMRInstance":"v4","%Name":"inst_7BA51E7E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7BA51E7E","objectId":{"name":"oBoss_act_fire","path":"objects/oBoss_act_fire/oBoss_act_fire.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":40.0,"y":23.0,},
+        {"$GMRInstance":"v4","%Name":"inst_3AF57968","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3AF57968","objectId":{"name":"oBoss_act_toriel_hand","path":"objects/oBoss_act_toriel_hand/oBoss_act_toriel_hand.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":54.0,"y":23.0,},
       ],"layers":[],"name":"Interface","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Boss","depth":400,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_203BEA80","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_203BEA80","objectId":{"name":"oBoss","path":"objects/oBoss/oBoss.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":126.0,},

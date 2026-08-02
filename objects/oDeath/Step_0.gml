@@ -41,7 +41,7 @@ if death_timer = death_time_soulfragment
 	}
 }
 
-if death_timer = death_time_gameover {global.music = mus_gameover}
+if death_timer = death_time_gameover && global.enable_music {global.music = mus_gameover}
 
 death_timer ++
 

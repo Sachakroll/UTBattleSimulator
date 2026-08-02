@@ -2,6 +2,8 @@
 
 if global.boss_name = "Toriel" {sprite_index = sBoss_toriel}
 if global.boss_name = "Papyrus" {sprite_index = sBoss_papyrus}
+if global.boss_name = "Asgore" {sprite_index = sBoss_asgore}
+if global.boss_name = "Sans" {sprite_index = sBoss_sans}
 
 if global.ubervolume = 1 && global.enable_music {global.music = music_from_boss(global.boss_name)}
 

@@ -65,18 +65,29 @@ if global.turn = "boss"
 	
 	with oAtk
 	{
-		if other.x + 5-other.collision_tolerance > collision_x1
-		&& other.x - 4+other.collision_tolerance < collision_x2
-		&& other.y + 5-other.down_collision_tolerance > collision_y1
-		&& other.y - 4+other.collision_tolerance < collision_y2
+		for (var i = 0 ; i < array_length(collision_box) ; i++)
 		{
-			if !enable_colors
-			{other.damage_soul(atk_dmg)}
-			else
+			if collision_box[i].x1 = "" {break}
+			
+			if other.x + 5-other.collision_tolerance > collision_box[i].x1
+			&& other.x - 4+other.collision_tolerance < collision_box[i].x2
+			&& other.y + 5-other.down_collision_tolerance > collision_box[i].y1
+			&& other.y - 4+other.collision_tolerance < collision_box[i].y2
 			{
-				if color = 0 || (color = 1 && (other.hsp != 0 || other.vsp != 0))
-				|| (color = 2 && other.hsp = 0 && other.vsp = 0)
-				{other.damage_soul(atk_dmg)}
+				if !enable_colors
+				{
+					if destructible {other.damage_soul(atk_dmg, id)}
+					else {other.damage_soul(atk_dmg, noone)}
+				}
+				else
+				{
+					if color = 0 || (color = 1 && (other.hsp != 0 || other.vsp != 0))
+					|| (color = 2 && other.hsp = 0 && other.vsp = 0)
+					{
+						if destructible {other.damage_soul(atk_dmg, id)}
+					else {other.damage_soul(atk_dmg, noone)}
+					}
+				}
 			}
 		}
 	}

@@ -258,6 +258,10 @@ if global.turn = "boss"
 		}
 	}
 	
+	// Cooldown d'attaque
+	if boss_atk_cooldown != 0 {boss_atk_cooldown --}
+	boss_can_attack = boss_atk_cooldown = 0 && !boss_action_was_just_selected
+	
 	// Redimensionner le cadre
 	if global.selected_boss_action = "resize"
 	{
@@ -301,7 +305,7 @@ if global.turn = "boss"
 	
 	// Atk bone hor
 	if global.selected_boss_action = "atk bone hor" && mouse_y <= box_bottom+atk_bone_mouse_tolerance
-	&& mouse_y >= box_bottom-box_height-atk_bone_mouse_tolerance && !boss_action_was_just_selected
+	&& mouse_y >= box_bottom-box_height-atk_bone_mouse_tolerance && boss_can_attack
 	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "bottom"
@@ -346,7 +350,7 @@ if global.turn = "boss"
 	
 	// Atk bone vert
 	if global.selected_boss_action = "atk bone vert" && mouse_x <= 160+(box_width/2)+atk_bone_mouse_tolerance
-	&& mouse_x >= 160-(box_width/2)-atk_bone_mouse_tolerance && !boss_action_was_just_selected
+	&& mouse_x >= 160-(box_width/2)-atk_bone_mouse_tolerance && boss_can_attack
 	&& (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_middle))
 	{
 		var _base = "left"
@@ -390,21 +394,31 @@ if global.turn = "boss"
 	}
 	
 	// Atk fire
-	if global.selected_boss_action = "atk fire" && !boss_action_was_just_selected
+	if global.selected_boss_action = "atk fire" && boss_can_attack
 	{
-		if mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)
-		{
-			var _dir = -1
-			if mouse_check_button_pressed(mb_right) {_dir = 1}
-			instance_create_layer(160, box_bottom-box_height+4, "Bullets", oAtk, {type : "fire", dir : _dir})
-		}
-		if mouse_check_button_pressed(mb_middle)
-		{enable_wall_fire = 1 - enable_wall_fire}
+		if mouse_check_button_pressed(mb_left) {summon_fire(-1)}
+		if mouse_check_button_pressed(mb_right) {summon_fire(1)}
+		if mouse_check_button_pressed(mb_middle) {enable_wall_fire = 1 - enable_wall_fire}
 	}
 	if enable_wall_fire && global.boss_turn_timer mod wall_fire_summon_interval = 0
 	{
 		summon_wall_fire(-1)
 		summon_wall_fire(1)
+	}
+	
+	// Atk toriel hand
+	if global.selected_boss_action = "atk toriel hand" && !boss_action_was_just_selected
+	{
+		if mouse_check_button_pressed(mb_left) && toriel_hand_left_inst = noone
+		{
+			boss_atk_cooldown = toriel_hand_atk_cooldown_time
+			toriel_hand_left_inst = summon_toriel_hand(1)
+		}
+		if mouse_check_button_pressed(mb_right) && toriel_hand_right_inst = noone
+		{
+			boss_atk_cooldown = toriel_hand_atk_cooldown_time
+			toriel_hand_right_inst = summon_toriel_hand(-1)
+		}
 	}
 }
 
@@ -447,6 +461,7 @@ if global.turn = "to player"
 		
 		// Choses à désactiver à la fin du tour du boss
 		enable_wall_fire = false
+		boss_atk_cooldown = 0
 	}
 }
 

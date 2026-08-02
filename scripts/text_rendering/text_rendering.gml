@@ -129,7 +129,10 @@ function win_dialog()
 {
 	var _exp = boss_exp(global.boss_name)
 	if global.player_lv != 20 && round(random(1)) = 1 && _exp != "0"
-	{return ["* YOU WON!£", "* You earned "+_exp+" XP and 0 gold.£", "* Your LOVE increased."]}
+	{audio_play_sound(snd_levelup, 0, 0)
+		if global.player_hp = global.player_max_hp {global.player_hp += 4}
+		global.player_lv ++
+		return ["* YOU WON!£", "* You earned "+_exp+" XP and 0 gold.£", "* Your LOVE increased."]}
 	else {return ["* YOU WON!£", "* You earned "+_exp+" XP and 0 gold.", ""]}
 }
 

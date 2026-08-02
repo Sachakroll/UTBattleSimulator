@@ -61,6 +61,8 @@ global.soulmodes_count = sprite_get_number(sBoss_act_soul)
 global.boss_atk_color = 0
 global.boss_atk_colors_count = sprite_get_number(sBoss_act_atkcolor)
 boss_action_was_just_selected = false
+boss_atk_cooldown = 0
+boss_can_attack = true
 
 // Atk bone hor/ver
 
@@ -79,6 +81,21 @@ function summon_wall_fire(side)
 	var random_vsp = random_range(-wall_fire_max_vsp, wall_fire_max_vsp)
 	if abs(random_vsp) < wall_fire_min_vsp {random_vsp = sign(random_vsp)*wall_fire_min_vsp}
 	instance_create_layer(160+side*box_width/2-side*8, box_bottom-box_height/4, "Bullets", oAtk, {type : "wall fire", vert_speed : random_vsp, wall_side : side})
+}
+function summon_fire(_dir)
+{
+	instance_create_layer(160, box_bottom-box_height+4, "Bullets", oAtk, {type : "fire", dir : _dir})
+}
+
+// Atk toriel hand
+
+toriel_hand_left_inst = noone
+toriel_hand_right_inst = noone
+toriel_hand_spawn_boxdist = 8
+toriel_hand_atk_cooldown_time = 60
+function summon_toriel_hand(_dir)
+{
+	return instance_create_layer(160-_dir*(box_width/2+toriel_hand_spawn_boxdist), box_bottom-box_height*(1/2+_dir*7/20), "Bullets", oAtk, {type : "toriel hand", dir : _dir})
 }
 
 // Action resize

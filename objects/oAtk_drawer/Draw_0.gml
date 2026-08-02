@@ -50,11 +50,16 @@ if owner.type = "bone vert"
 	}
 }
 
-if owner.type = "fire" || owner.type = "wall fire"
+if owner.type = "fire" || owner.type = "wall fire" || owner.type = "hand fire"
 {
 	var img = 0
-	if timer mod 4 >= 2 {img = 1}
+	if timer mod 6 >= 3 {img = 1}
 	draw_sprite(sAtk_fire, img, _x-surf_x, _y-surf_y)
+}
+
+if owner.type = "toriel hand"
+{
+	draw_sprite(sAtk_toriel_hand, (1-owner.dir)/2, _x-surf_x, _y-surf_y)
 }
 
 // Dessiner la surface
@@ -65,6 +70,17 @@ draw_surface(global.surface, surf_x, surf_y)
 // Debug
 
 if global.debug
-{draw_rectangle_colour(owner.collision_x1, owner.collision_y1, owner.collision_x2, owner.collision_y2, c_red, c_red, c_red, c_red, 0)}
+{
+	draw_set_alpha(0.5)
+	var _depth = gpu_get_depth()
+	gpu_set_depth(0)
+	for (var i = 0 ; i < array_length(owner.collision_box) ; i++)
+	{
+		if owner.collision_box[i].x1 = "" {break}
+		draw_rectangle_colour(owner.collision_box[i].x1, owner.collision_box[i].y1, owner.collision_box[i].x2, owner.collision_box[i].y2, c_red, c_red, c_red, c_red, 0)
+	}
+	draw_set_alpha(1)
+	gpu_set_depth(_depth)
+}
 
 }
