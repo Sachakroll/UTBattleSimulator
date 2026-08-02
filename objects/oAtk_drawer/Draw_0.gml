@@ -10,43 +10,57 @@ surface_set_target(global.surface)
 
 if owner.type = "bone hor"
 {
-	var sw = sprite_get_width(sAtk_bone_hor)
-	var sh = sprite_get_height(sAtk_bone_hor)
+	if !sprite_init
+	{
+		sprite = sAtk_bone_hor_papyrus
+		if global.boss_name = "Sans" {sprite = sAtk_bone_hor_sans}
+		sprite_init = true
+	}
+	
+	var sw = sprite_get_width(sprite)
+	var sh = sprite_get_height(sprite)
 	
 	if owner.base = "bottom"
 	{
 		var h = 1 + oBattle.box_bottom - _y - sh
-		draw_sprite_ext(sAtk_bone_hor, 0, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 0, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 		draw_rectangle_colour(_x-2-surf_x, _y-surf_y, _x+3-surf_x, _y+h-surf_y, color, color, color, color, 0)
-		draw_sprite_ext(sAtk_bone_hor, 1, _x-surf_x, _y+h-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 1, _x-surf_x, _y+h-surf_y, 1, 1, 0, color, 1)
 	}
 	if owner.base = "top"
 	{
 		var h = 1 + _y - (oBattle.box_bottom-oBattle.box_height) - sh
-		draw_sprite_ext(sAtk_bone_hor, 1, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 1, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 		draw_rectangle_colour(_x-2-surf_x, _y-surf_y, _x+3-surf_x, _y-h-surf_y, color, color, color, color, 0)
-		draw_sprite_ext(sAtk_bone_hor, 0, _x-surf_x, _y-h-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 0, _x-surf_x, _y-h-surf_y, 1, 1, 0, color, 1)
 	}
 }
 
 if owner.type = "bone vert"
 {
-	var sw = sprite_get_width(sAtk_bone_vert)
-	var sh = sprite_get_height(sAtk_bone_vert)
+	if !sprite_init
+	{
+		sprite = sAtk_bone_vert_papyrus
+		if global.boss_name = "Sans" {sprite = sAtk_bone_vert_sans}
+		sprite_init = true
+	}
+	
+	var sw = sprite_get_width(sprite)
+	var sh = sprite_get_height(sprite)
 	
 	if owner.base = "right"
 	{
 		var h = 1 + (160+oBattle.box_width/2) - _x - sw
-		draw_sprite_ext(sAtk_bone_vert, 1, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 1, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 		draw_rectangle_colour(_x-surf_x, _y-2-surf_y, _x+h-surf_x, _y+3-surf_y, color, color, color, color, 0)
-		draw_sprite_ext(sAtk_bone_vert, 0, _x+h-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 0, _x+h-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 	}
 	if owner.base = "left"
 	{
 		var h = 1 - (160-oBattle.box_width/2) + _x - sw
-		draw_sprite_ext(sAtk_bone_vert, 0, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 0, _x-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 		draw_rectangle_colour(_x-surf_x, _y-2-surf_y, _x-h-surf_x, _y+3-surf_y, color, color, color, color, 0)
-		draw_sprite_ext(sAtk_bone_vert, 1, _x-h-surf_x, _y-surf_y, 1, 1, 0, color, 1)
+		draw_sprite_ext(sprite, 1, _x-h-surf_x, _y-surf_y, 1, 1, 0, color, 1)
 	}
 }
 

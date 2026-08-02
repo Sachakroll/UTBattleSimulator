@@ -58,12 +58,13 @@ function s_font_spacing(_char)
 
 function check_dialog()
 {
-	if global.boss_name = "Papyrus"
-	{return ["* PAPYRUS 8 ATK 2 DEF£", "* He likes to say:", "µ ''Nyeh heh heh!''"]}
-	if global.boss_name = "Toriel"
-	{return ["* TORIEL - ATK 80 DEF 80£", "* Knows best for you.", ""]}
-	
-	return ["[Missing text]", "", ""]
+	switch global.boss_name
+	{
+		case "Toriel" : return ["* TORIEL - ATK 80 DEF 80£", "* Knows best for you.", ""]
+		case "Papyrus" : return ["* PAPYRUS 8 ATK 2 DEF£", "* He likes to say:", "µ ''Nyeh heh heh!''"]
+		case "Sans" : return ["* SANS 1 ATK 1 DEF£", "* The easiest enemy.", "* Can only deal 1 damage."]
+		default : return ["[Missing text]", "", ""]
+	}
 }
 
 function random_dialog()
@@ -120,6 +121,26 @@ function random_dialog()
 		{return ["* Papyrus is preparing a bone", "µ attack.", ""]}
 		if nb = 5
 		{return ["* Smells like bones.", "", ""]}
+	}
+	
+	if global.boss_name = "Sans"
+	{
+		if global.turn_number = 1
+		{return ["* You feel like you@re going to", "µ have a bad time.", ""]}
+		if floor(random(3)) = 0 && global.turn_number < 16 && global.turn_number > 2
+		{
+			if global.turn_number > 12 {return ["* Sans is starting to look", "µ really tired.", ""]}
+			if global.turn_number > 9 {return ["* Sans's movements seem to be", "µ slower.", ""]}
+			if global.turn_number > 6 {return ["* Reading this doesn't seem like", "µ the best use of time.", ""]}
+			if global.turn_number > 4 {return ["* Sans's movements grow a little", "µ wearier.", ""]}
+			if global.turn_number > 2 {return ["* Just keep attacking.", "", ""]}
+		}
+		else {switch floor(random(8))
+		{
+			case 0 : case 1 : return ["* KARMA coursing through your", "µ veins.", ""]
+			case 2 : case 3 : return ["* You felt your sins weighing", "µ on your neck.", ""]
+			default : return ["* You felt your sins crawling", "µ on your back.", ""]
+		}}
 	}
 	
 	return ["[Missing text]", "", ""]

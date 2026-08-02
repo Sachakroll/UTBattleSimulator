@@ -3,6 +3,7 @@
   "%Name":"oBoss_act_bone_hor",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"oBoss_act_bone_hor",
@@ -33,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sBoss_act_bone_hor",
-    "path":"sprites/sBoss_act_bone_hor/sBoss_act_bone_hor.yy",
+    "name":"sBoss_act_bone_hor_papyrus",
+    "path":"sprites/sBoss_act_bone_hor_papyrus/sBoss_act_bone_hor_papyrus.yy",
   },
   "spriteMaskId":null,
   "visible":true,

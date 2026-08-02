@@ -9,13 +9,13 @@ if type = "bone hor"
 	
 	if base = "bottom"
 	{
-		collision_box[0].y1 = y - sprite_get_height(sAtk_bone_hor)/2 + 1
+		collision_box[0].y1 = y - sprite_get_height(sAtk_bone_hor_papyrus)/2 + 1
 		collision_box[0].y2 = oBattle.box_bottom
 	}
 	if base = "top"
 	{
 		collision_box[0].y1 = oBattle.box_bottom - oBattle.box_height
-		collision_box[0].y2 = y + sprite_get_height(sAtk_bone_hor)/2 - 1
+		collision_box[0].y2 = y + sprite_get_height(sAtk_bone_hor_papyrus)/2 - 1
 		if y < oBattle.box_bottom-oBattle.box_height - 8
 		{destroy_self()}
 	}
@@ -34,13 +34,13 @@ if type = "bone vert"
 	
 	if base = "right"
 	{
-		collision_box[0].x1 = x - sprite_get_width(sAtk_bone_hor)/2 + 1
+		collision_box[0].x1 = x - sprite_get_width(sAtk_bone_hor_papyrus)/2 + 1
 		collision_box[0].x2 = 160+(oBattle.box_width/2)
 	}
 	if base = "left"
 	{
 		collision_box[0].x1 = 160-(oBattle.box_width/2)
-		collision_box[0].x2 = x + sprite_get_width(sAtk_bone_hor)/2 - 1
+		collision_box[0].x2 = x + sprite_get_width(sAtk_bone_hor_papyrus)/2 - 1
 	}
 	if y < oBattle.box_bottom-oBattle.box_height - 10 || y > oBattle.box_bottom + 10
 	{destroy_self()}
