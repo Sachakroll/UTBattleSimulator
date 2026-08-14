@@ -24,6 +24,7 @@ smallfont_space = 10
 global.dialog_interline = 16
 box_trans_hsp = 6
 box_trans_vsp = 3
+global.surface = noone
 
 do_render_boss_name = false
 do_render_box = true
@@ -98,6 +99,18 @@ function summon_toriel_hand(_dir)
 	return instance_create_layer(160-_dir*(box_width/2+toriel_hand_spawn_boxdist), box_bottom-box_height*(1/2+_dir*7/20), "Bullets", oAtk, {type : "toriel hand", dir : _dir})
 }
 
+// Atk blaster
+
+blaster_spawn_screen_dist = 0
+blaster_spawn_mouse_movement_deadzone = 3
+blaster_spawn_step_size = 12
+blaster_spawn_delay = 8
+blaster_max_spawn_delay = 24
+blaster_spawn_timer = -1
+blaster_scale = 1
+atklaunching_initial_mouse_x = 0
+atklaunching_initial_mouse_y = 0
+
 // Action resize
 
 resize_tolerance = 10
@@ -121,6 +134,13 @@ box_min_height = 26
 box_max_height = 144
 box_height = box_default_height
 box_target_height = box_default_height
+
+// Choses à réinitialiser à la fin du tour du boss
+
+function boss_reinit_variables()
+{
+	blaster_spawn_timer = -1
+}
 
 // Fin du combat
 

@@ -76,10 +76,7 @@ if owner.type = "toriel hand"
 	draw_sprite(sAtk_toriel_hand, (1-owner.dir)/2, _x-surf_x, _y-surf_y)
 }
 
-// Dessiner la surface
-
 surface_reset_target()
-draw_surface(global.surface, surf_x, surf_y)
 
 // Debug
 

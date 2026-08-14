@@ -224,7 +224,3 @@ if global.turn = "dialog" || (global.turn = "player" && player_current_action = 
 		}
 	}
 }
-
-// Surface de combat
-
-global.surface = surface_create(box_width, box_height)

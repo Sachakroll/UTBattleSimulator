@@ -40,6 +40,12 @@ if type = "hand fire"
 	life_time = default_life_time
 }
 
+if type = "blaster"
+{
+	image_speed = 0
+	spawn_x = x
+	spawn_y = y
+}
 
 // Autodestruction
 

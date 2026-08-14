@@ -78,14 +78,18 @@ if type = "fire" || type = "wall fire"
 
 if type = "toriel hand"
 {
-	if hsp = 0 {hsp = dir*(3/5)}
-	var cos_coeff = 2.1*pi*dir/(2*oBattle.box_width)
+	if hsp = 0 {hsp = dir*0.71}
+	var cos_coeff = pi*dir/(oBattle.box_width)
 	vsp = 16*cos(cos_coeff*life_timer)*cos_coeff
-	hsp += dir*0.016
+	hsp += dir*0.0185
 	
-	var drop_interval = 10
-	if life_timer mod drop_interval = drop_interval-1 && life_timer > drop_interval
-	{instance_create_layer(x, y, "Bullets", oAtk, {type : "hand fire", dir : 1, hand_id : id})}
+	var drop_interval = 8
+	if (life_timer-2) mod drop_interval = drop_interval-1 && life_timer > drop_interval
+	{
+		instance_create_layer(x, y, "Bullets", oAtk, {type : "hand fire", dir : 1, hand_id : id})
+		if dir = 1 || oBattle.toriel_hand_left_inst = noone 
+		{audio_play_sound(snd_place, 1, 0, 0.7)}
+	}
 	
 	x += hsp
 	y += vsp
@@ -150,6 +154,9 @@ if type = "hand fire"
 		|| y + vsp <= oBattle.box_bottom-oBattle.box_height+box_collision_dist
 		{vsp = -vsp}
 		
+		if x + hsp >= 160+(oBattle.box_width/2)-box_collision_dist {hsp -= 0.44}
+		if x + hsp <= 160-(oBattle.box_width/2)+box_collision_dist {hsp += 0.44}
+		
 		x += hsp
 		y += vsp
 		
@@ -172,6 +179,52 @@ if type = "hand fire"
 	{destroy_self()}
 }
 
+if type = "blaster"
+{
+	sprite_index = sBlaster
+	image_angle = angle + 90
+	image_xscale = scale
+	enable_colors = false
+	
+	if (x != target_x || y != target_y) && life_timer < 50
+	{
+		var decc = 1/6
+		if life_timer > 25 {decc = 1/3}
+		hsp = (target_x-x)*decc
+		vsp = (target_y-y)*decc
+		
+		x += hsp
+		y += vsp
+		
+		if abs(target_x-x) <= 1 {x = target_x}
+		if abs(target_y-y) <= 1 {y = target_y}
+	}
+	
+	if life_timer = 10 {audio_play_sound(snd_blast1, 1, 0, 0.6, 0, 1.2)}
+	if life_timer = 30 {image_speed = 1}
+	if image_index >= 5 {image_speed = 0}
+	if life_timer = 50
+	{
+		hsp = 0
+		vsp = 0
+		var target_dist = point_distance(x, y, spawn_x, spawn_y)
+		h_acc = (spawn_x-x)/target_dist
+		v_acc = (spawn_y-y)/target_dist
+		
+		audio_play_sound(snd_blast2, 1, 0, 0.6)
+	}
+	
+	if life_timer > 50
+	{
+		hsp += h_acc
+		vsp += v_acc
+		x += hsp
+		y += vsp
+	}
+	if x > 660 || x < -300 || y > 540 || y < -300 {destroy_self()}
+	show_debug_message(image_angle)
+}
+
 // Créer l'objet qui dessine l'attaque (pour certaines attaques)
 
 if !instance_exists(drawer)
@@ -192,7 +245,7 @@ if !instance_exists(drawer)
 
 if global.turn != "boss"
 || (life_time != -1 && life_timer >= life_time)
-|| x > 420 || x < -100 || y > 340 || y < -100
+|| ((x > 420 || x < -100 || y > 340 || y < -100) && type != "blaster")
 {destroy_self()}
 
 life_timer ++

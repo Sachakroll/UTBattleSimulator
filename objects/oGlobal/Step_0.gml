@@ -10,7 +10,7 @@ if room = Launch
 // Plein écran
 
 if keyboard_check_pressed(vk_f4) || keyboard_check_pressed(vk_f11)
-{window_set_fullscreen(1-window_get_fullscreen())}
+{window_set_fullscreen(!window_get_fullscreen())}
 
 // Paramètres
 

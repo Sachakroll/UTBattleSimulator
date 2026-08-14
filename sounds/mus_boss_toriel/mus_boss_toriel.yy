@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":0,
+  "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":108.454605,
+  "duration":108.43429,
   "exportDir":"",
   "name":"mus_boss_toriel",
   "parent":{

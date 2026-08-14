@@ -248,12 +248,12 @@ if global.turn = "boss"
 	
 	// Vérifier que le boss n'est pas en train de cliquer sur l'interface, car dans ce cas il ne faudrait pas envoyer d'attaque
 	boss_action_was_just_selected = false
-	var gui_objects_to_check = [oBoss_act, oBoss_act_endturn, oBoss_act_resize, oBoss_act_atkcolor, oBoss_act_soulmode]
+	var gui_objects_to_check = [oBoss_act, oBoss_act_endturn, oBoss_act_resize, oBoss_act_atkcolor, oBoss_act_soulmode, oBoss_tab, oMusic_tab]
 	for (i = 0 ; i < array_length(gui_objects_to_check) ; i++)
 	{
 		with gui_objects_to_check[i] {if mouse_check_button_pressed(mb_left)
-			&& mouse_x >= x + 1 && mouse_x < x + sprite_width - 1
-			&& mouse_y >= y + 1 && mouse_y < y + sprite_height - 1
+			&& mouse_x >= x && mouse_x < x + sprite_width
+			&& mouse_y >= y && mouse_y < y + sprite_height
 			{other.boss_action_was_just_selected = true}
 		}
 	}
@@ -420,7 +420,53 @@ if global.turn = "boss"
 			toriel_hand_right_inst = summon_toriel_hand(-1)
 		}
 	}
+	
+	// Atk blaster
+	if global.selected_boss_action = "atk blaster" && boss_can_attack
+	{
+		if mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)
+		&& mouse_x > 0 && mouse_x < 360 && mouse_y > 0 && mouse_y < 240
+		{
+			blaster_spawn_timer = 0
+			atklaunching_initial_mouse_x = mouse_x
+			atklaunching_initial_mouse_y = mouse_y
+			
+			if mouse_check_button_pressed(mb_left) {blaster_scale = 1}
+			else {blaster_scale = 1/2}
+		}
+		if blaster_spawn_timer != -1 {blaster_spawn_timer ++}
+		
+		if blaster_spawn_timer > blaster_spawn_delay
+		&& (point_distance(atklaunching_initial_mouse_x, atklaunching_initial_mouse_y, mouse_x, mouse_y) > blaster_spawn_mouse_movement_deadzone || mouse_check_button(mb_middle))
+		{
+			blaster_spawn_timer = -1
+			
+			var blaster_angle = point_direction(atklaunching_initial_mouse_x, atklaunching_initial_mouse_y, mouse_x, mouse_y)
+			if mouse_check_button(mb_middle)
+			{blaster_angle = point_direction(atklaunching_initial_mouse_x, atklaunching_initial_mouse_y, oSoul.x, oSoul.y)}
+			
+			var spawn_x = atklaunching_initial_mouse_x
+			var spawn_y = atklaunching_initial_mouse_y
+			var x_step = lengthdir_x(blaster_spawn_step_size, blaster_angle)
+			var y_step = lengthdir_y(blaster_spawn_step_size, blaster_angle)
+		
+			while (spawn_x > -blaster_spawn_screen_dist && spawn_x < 320+blaster_spawn_screen_dist)
+			&& (spawn_y > -blaster_spawn_screen_dist && spawn_y < 240+blaster_spawn_screen_dist)
+			{
+				spawn_x -= x_step
+				spawn_y -= y_step
+			}
+			instance_create_layer(spawn_x, spawn_y, "Bullets", oAtk, 
+			{
+				type : "blaster", angle : blaster_angle, scale : blaster_scale,
+				target_x : atklaunching_initial_mouse_x, target_y : atklaunching_initial_mouse_y
+			})
+		}
+		else {if blaster_spawn_timer >= blaster_max_spawn_delay
+		{blaster_spawn_timer = -1}}
+	}
 }
+else {boss_reinit_variables()}
 
 // Passage du tour du joueur au tour du boss
 
@@ -435,6 +481,7 @@ if global.turn = "to boss"
 	{
 		global.turn = "boss"
 		global.boss_turn_timer = 0
+		to_boss_timer = 0
 		
 		atk_bar_inst = -1
 		do_render_atk_target = false
@@ -489,3 +536,12 @@ if heal_timer != - 1
 		selected_item = 0
 	}
 }
+
+// Créer la surface où les attaques seront dessinées
+
+if surface_exists(global.surface) {surface_free(global.surface)}
+global.surface = surface_create(box_width, box_height)
+
+surface_set_target(global.surface)
+draw_clear_alpha(c_black, 0)
+surface_reset_target()

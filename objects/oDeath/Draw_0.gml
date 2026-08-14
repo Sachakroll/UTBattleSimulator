@@ -2,8 +2,8 @@
 
 if death_timer >= death_time_gameover
 {
-	var alf = (death_timer-death_time_gameover)/(death_time_gameover_appeared-death_time_gameover)
-	draw_sprite_ext(sGameover, 0, 160, 18, 1, 1, 0, c_white, alf)
+	var _alpha = (death_timer-death_time_gameover)/(death_time_gameover_appeared-death_time_gameover)
+	draw_sprite_ext(sGameover, 0, 160, 18, 1, 1, 0, c_white, _alpha)
 }
 
 // Dialogue

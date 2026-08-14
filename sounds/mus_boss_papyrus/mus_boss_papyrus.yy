@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":0,
+  "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":57.685623,
+  "duration":57.665306,
   "exportDir":"",
   "name":"mus_boss_papyrus",
   "parent":{

@@ -34,7 +34,7 @@ if death_timer = death_time_soulfragment
 {
 	instance_destroy(oDeath_soul)
 	audio_play_sound(snd_soulfragment, 20, 0, 1)
-	for (i = 0 ; i < 6 ; i++)
+	for (var i = 0 ; i < 6 ; i++)
 	{
 		instance_create_layer(global.death_soul_x + random_range(-6, 6), 
 		global.death_soul_y + random_range(-6, 6), "Instances", oSoul_fragment)

@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":0,
+  "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":31.997097,
+  "duration":32.007256,
   "exportDir":"",
   "name":"mus_menu6",
   "parent":{
