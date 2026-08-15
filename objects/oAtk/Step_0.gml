@@ -184,9 +184,11 @@ if type = "blaster"
 	sprite_index = sBlaster
 	image_angle = angle + 90
 	image_xscale = scale
+	
+	atk_dmg = 0
 	enable_colors = false
 	
-	if (x != target_x || y != target_y) && life_timer < 50
+	if (x != target_x || y != target_y) && life_timer < blast_time
 	{
 		var decc = 1/6
 		if life_timer > 25 {decc = 1/3}
@@ -203,7 +205,7 @@ if type = "blaster"
 	if life_timer = 10 {audio_play_sound(snd_blast1, 1, 0, 0.6, 0, 1.2)}
 	if life_timer = 30 {image_speed = 1}
 	if image_index >= 5 {image_speed = 0}
-	if life_timer = 50
+	if life_timer = blast_time
 	{
 		hsp = 0
 		vsp = 0
@@ -214,22 +216,38 @@ if type = "blaster"
 		audio_play_sound(snd_blast2, 1, 0, 0.6)
 	}
 	
-	if life_timer > 50
+	if life_timer > blast_time
+	{		
+		if life_timer <= blast_max_time
+		{blast_width = blast_max_width * (life_timer-blast_time)/(blast_max_time-blast_time)}
+		else
+		{
+			if life_timer <= blast_end_time
+			{blast_width = blast_max_width * (1 - (life_timer-blast_max_time)/(blast_end_time-blast_max_time))}
+			else
+			{
+				blast_width = 0
+				atk_dmg = 0
+			}
+		}
+	}
+	
+	if life_timer > blast_max_time
 	{
 		hsp += h_acc
 		vsp += v_acc
 		x += hsp
 		y += vsp
 	}
-	if x > 660 || x < -300 || y > 540 || y < -300 {destroy_self()}
+	if x > 620 || x < -300 || y > 540 || y < -300 {destroy_self()}
 	show_debug_message(image_angle)
 }
 
 // Créer l'objet qui dessine l'attaque (pour certaines attaques)
 
-if !instance_exists(drawer)
+if !instance_exists(drawer) && !is_this_instance_dead
 // Types d'attaques qui ont besoin d'un drawer :
-&& (type = "bone hor" || type = "bone vert" || type = "fire" || type = "wall fire" || type = "toriel hand" || type = "hand fire")
+&& (type = "bone hor" || type = "bone vert" || type = "fire" || type = "wall fire" || type = "toriel hand" || type = "hand fire" || type = "blaster")
 {
 	if enable_colors
 	{

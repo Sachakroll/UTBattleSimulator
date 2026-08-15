@@ -102,6 +102,7 @@
     {"id":{"name":"sAtk_bone_vert_sans","path":"sprites/sAtk_bone_vert_sans/sAtk_bone_vert_sans.yy",},},
     {"id":{"name":"sAtk_fire","path":"sprites/sAtk_fire/sAtk_fire.yy",},},
     {"id":{"name":"sAtk_toriel_hand","path":"sprites/sAtk_toriel_hand/sAtk_toriel_hand.yy",},},
+    {"id":{"name":"sBlast2","path":"sprites/sBlast2/sBlast2.yy",},},
     {"id":{"name":"sBlaster_menu","path":"sprites/sBlaster_menu/sBlaster_menu.yy",},},
     {"id":{"name":"sBlaster","path":"sprites/sBlaster/sBlaster.yy",},},
     {"id":{"name":"sBoss_act_atkcolor","path":"sprites/sBoss_act_atkcolor/sBoss_act_atkcolor.yy",},},

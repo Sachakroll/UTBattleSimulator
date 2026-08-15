@@ -1,9 +1,10 @@
 drawer = noone
 enable_colors = false
+is_this_instance_dead = false
 
 collision_box = [
-{x1:"", y1:"", x2:"", y2:""},
-{x1:"", y1:"", x2:"", y2:""}]
+{x1:"", y1:"", x2:"", y2:"", rot:0},
+{x1:"", y1:"", x2:"", y2:"", rot:0}]
 
 atk_dmg = 0
 life_timer = 0
@@ -45,6 +46,13 @@ if type = "blaster"
 	image_speed = 0
 	spawn_x = x
 	spawn_y = y
+	blast_time = 50
+	blast_max_time = 56
+	blast_end_time = 80
+	
+	blast_dist = 38
+	blast_max_width = 35
+	blast_width = 0
 }
 
 // Autodestruction
@@ -53,6 +61,7 @@ function destroy_self()
 {
 	instance_destroy(drawer)
 	instance_destroy()
+	is_this_instance_dead = true
 	
 	if type = "toriel hand"
 	{

@@ -78,6 +78,31 @@ if owner.type = "toriel hand"
 
 surface_reset_target()
 
+if owner.type = "blaster"
+{
+	if timer > owner.blast_time
+	{
+		var angle = owner.angle
+		var display_angle = owner.image_angle
+		var draw_dist = owner.blast_dist
+		var ray_width = owner.blast_width
+		var threerectangles_draw_shift = 6
+		var alpha = 1
+		if timer > owner.blast_max_time {alpha = ray_width/owner.blast_max_width}
+		
+		ray_width *= owner.scale
+		draw_blast(_x, _y, draw_dist, angle, display_angle, ray_width, 720, alpha)
+		
+		ray_width *= 0.8
+		draw_dist -= threerectangles_draw_shift
+		draw_blast(_x, _y, draw_dist, angle, display_angle, ray_width, threerectangles_draw_shift, alpha)
+		
+		ray_width *= 0.65
+		draw_dist -= threerectangles_draw_shift
+		draw_blast(_x, _y, draw_dist, angle, display_angle, ray_width, threerectangles_draw_shift, alpha)
+	}
+}
+
 // Debug
 
 if global.debug

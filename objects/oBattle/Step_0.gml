@@ -424,8 +424,9 @@ if global.turn = "boss"
 	// Atk blaster
 	if global.selected_boss_action = "atk blaster" && boss_can_attack
 	{
-		if mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right)
-		&& mouse_x > 0 && mouse_x < 360 && mouse_y > 0 && mouse_y < 240
+		show_debug_message(mouse_x)
+		if (mouse_check_button_pressed(mb_left) || mouse_check_button_pressed(mb_right))
+		&& mouse_x > 0 && mouse_x < 320 && mouse_y > 0 && mouse_y < 240 && blaster_spawn_timer = -1
 		{
 			blaster_spawn_timer = 0
 			atklaunching_initial_mouse_x = mouse_x

@@ -101,10 +101,10 @@ function summon_toriel_hand(_dir)
 
 // Atk blaster
 
-blaster_spawn_screen_dist = 0
 blaster_spawn_mouse_movement_deadzone = 3
 blaster_spawn_step_size = 12
-blaster_spawn_delay = 8
+blaster_spawn_screen_dist = 32
+blaster_spawn_delay = 6
 blaster_max_spawn_delay = 24
 blaster_spawn_timer = -1
 blaster_scale = 1
