@@ -1,8 +1,7 @@
 // Debug
 
-if keyboard_check(ord("A")) {global.player_hp ++}
-if keyboard_check(ord("Q")) {global.player_hp --}
-
-show_debug_message("Turn : "+global.turn)
-show_debug_message("Boss action : "+string(global.selected_boss_action))
-show_debug_message("Instances : "+string(instance_count))
+if global.debug
+{
+	if keyboard_check(vk_f5) {global.player_hp ++}
+	if keyboard_check(vk_f6) {global.player_hp --}
+}

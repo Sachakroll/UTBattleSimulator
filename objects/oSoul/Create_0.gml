@@ -27,3 +27,21 @@ function damage_soul(dealt_dmg, eventual_object_to_destroy)
 		{eventual_object_to_destroy.destroy_self()}
 	}
 }
+
+function detect_straight_collision(box)
+{
+	return (x + 5-collision_tolerance > box.x1
+	&& x - 4+collision_tolerance < box.x2
+	&& y + 5-down_collision_tolerance > box.y1
+	&& y - 4+collision_tolerance < box.y2)
+}
+
+function detect_collision(box)
+{
+	if box.rot = "" {return detect_straight_collision(box)}
+		
+	var inst = instance_create_layer(0, 0, "Bullets", oRotatable_collision_box)
+	var collision = inst.calculate_collision(box)
+	//if !global.debug {instance_destroy(inst)}
+	return collision
+}

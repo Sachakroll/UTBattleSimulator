@@ -7,6 +7,13 @@ if global.player_hp < 0 {global.player_hp = 0}
 // Debug
 
 if keyboard_check_pressed(221) {global.debug = 1 - global.debug}
+if global.debug
+{
+	if keyboard_check_pressed(vk_f1) {
+		if room != Battle {room_goto(Battle)}
+		else {room_goto(Menu)}}
+	if keyboard_check_pressed(vk_f2) {global.enable_music = !global.enable_music}
+}
 
 // Manette
 

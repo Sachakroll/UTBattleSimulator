@@ -91,7 +91,7 @@ if owner.type = "blaster"
 		if timer > owner.blast_max_time {alpha = ray_width/owner.blast_max_width}
 		
 		ray_width *= owner.scale
-		draw_blast(_x, _y, draw_dist, angle, display_angle, ray_width, 720, alpha)
+		draw_blast(_x, _y, draw_dist, angle, display_angle, ray_width, owner.blast_reach, alpha)
 		
 		ray_width *= 0.8
 		draw_dist -= threerectangles_draw_shift
@@ -105,7 +105,7 @@ if owner.type = "blaster"
 
 // Debug
 
-if global.debug
+if global.debug && owner.debug_draw_collision_box && owner.atk_dmg != 0
 {
 	draw_set_alpha(0.5)
 	var _depth = gpu_get_depth()

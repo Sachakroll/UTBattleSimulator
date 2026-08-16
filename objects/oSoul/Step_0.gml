@@ -67,12 +67,9 @@ if global.turn = "boss"
 	{
 		for (var i = 0 ; i < array_length(collision_box) ; i++)
 		{
-			if collision_box[i].x1 = "" {break}
+			if collision_box[i].x1 = "" || atk_dmg = 0 {break}
 			
-			if other.x + 5-other.collision_tolerance > collision_box[i].x1
-			&& other.x - 4+other.collision_tolerance < collision_box[i].x2
-			&& other.y + 5-other.down_collision_tolerance > collision_box[i].y1
-			&& other.y - 4+other.collision_tolerance < collision_box[i].y2
+			if other.detect_collision(collision_box[i])
 			{
 				if !enable_colors
 				{

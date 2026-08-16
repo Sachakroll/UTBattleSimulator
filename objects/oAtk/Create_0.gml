@@ -3,13 +3,14 @@ enable_colors = false
 is_this_instance_dead = false
 
 collision_box = [
-{x1:"", y1:"", x2:"", y2:"", rot:0},
-{x1:"", y1:"", x2:"", y2:"", rot:0}]
+{x1:"", y1:"", x2:"", y2:"", rot:"", rot_x:"", rot_y:""},
+{x1:"", y1:"", x2:"", y2:"", rot:"", rot_x:"", rot_y:""}]
 
 atk_dmg = 0
 life_timer = 0
 life_time = -1 //-1 si durée de vie indéfinie
 destructible = false
+debug_draw_collision_box = true
 
 hsp = 0
 vsp = 0
@@ -48,11 +49,14 @@ if type = "blaster"
 	spawn_y = y
 	blast_time = 50
 	blast_max_time = 56
+	blast_no_dmg_time = 70
 	blast_end_time = 80
 	
 	blast_dist = 38
+	blast_reach = 720
 	blast_max_width = 35
 	blast_width = 0
+	blast_collison_width_scale = 0.5
 }
 
 // Autodestruction

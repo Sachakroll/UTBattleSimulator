@@ -13,7 +13,7 @@ if owner.type = "blaster"
 	{
 		var draw_x = __x + lengthdir_x(__dist, __angle) + lengthdir_x(__width/2, __angle-90)
 		var draw_y = __y + lengthdir_y(__dist, __angle) + lengthdir_y(__width/2, __angle-90)
-		draw_sprite_general(sBlast2, 0, 0, 0, 1, 1, draw_x, draw_y, __width, __length, __display_angle, c_white, c_white, c_white, c_white, __alpha)
+		draw_sprite_general(sWhite_rectangle, 0, 0, 0, 1, 1, draw_x, draw_y, __width, __length, __display_angle, c_white, c_white, c_white, c_white, __alpha)
 	}
 }
 

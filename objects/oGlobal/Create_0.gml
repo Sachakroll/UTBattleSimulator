@@ -13,7 +13,8 @@ global.player_name = ""
 
 global.menu_selected_option = 0
 global.fights_won = 0
-global.debug = 0
+global.debug = false
+global.debug_render_smaller_text = false
 
 global.death_soul_x = 0
 global.death_soul_y = 0
@@ -57,5 +58,5 @@ global.prev_input_d = 0
 global.music = -1
 previous_music = -1
 global.volume = 1
-global.enable_music = 0
+global.enable_music = 1
 global.ubervolume = 1

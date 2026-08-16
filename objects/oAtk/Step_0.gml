@@ -181,12 +181,14 @@ if type = "hand fire"
 
 if type = "blaster"
 {
+	if life_timer > blast_time && life_timer < blast_no_dmg_time {atk_dmg = 5}
+	else {atk_dmg = 0}
+	
+	enable_colors = false
+	debug_draw_collision_box = false
 	sprite_index = sBlaster
 	image_angle = angle + 90
 	image_xscale = scale
-	
-	atk_dmg = 0
-	enable_colors = false
 	
 	if (x != target_x || y != target_y) && life_timer < blast_time
 	{
@@ -202,7 +204,7 @@ if type = "blaster"
 		if abs(target_y-y) <= 1 {y = target_y}
 	}
 	
-	if life_timer = 10 {audio_play_sound(snd_blast1, 1, 0, 0.6, 0, 1.2)}
+	if life_timer = 10 {audio_play_sound(snd_blast1, 1, 0, 0.65, 0, 1.2)}
 	if life_timer = 30 {image_speed = 1}
 	if image_index >= 5 {image_speed = 0}
 	if life_timer = blast_time
@@ -213,7 +215,7 @@ if type = "blaster"
 		h_acc = (spawn_x-x)/target_dist
 		v_acc = (spawn_y-y)/target_dist
 		
-		audio_play_sound(snd_blast2, 1, 0, 0.6)
+		audio_play_sound(snd_blast2, 1, 0, 1)
 	}
 	
 	if life_timer > blast_time
@@ -225,10 +227,7 @@ if type = "blaster"
 			if life_timer <= blast_end_time
 			{blast_width = blast_max_width * (1 - (life_timer-blast_max_time)/(blast_end_time-blast_max_time))}
 			else
-			{
-				blast_width = 0
-				atk_dmg = 0
-			}
+			{blast_width = 0}
 		}
 	}
 	
@@ -241,6 +240,14 @@ if type = "blaster"
 	}
 	if x > 620 || x < -300 || y > 540 || y < -300 {destroy_self()}
 	show_debug_message(image_angle)
+	
+	collision_box[0].x1 = x-blast_collison_width_scale*blast_width/2
+	collision_box[0].y1 = y+blast_dist
+	collision_box[0].x2 = x+blast_collison_width_scale*blast_width/2
+	collision_box[0].y2 = y+blast_dist+blast_reach
+	collision_box[0].rot = angle
+	collision_box[0].rot_x = x
+	collision_box[0].rot_y = y
 }
 
 // Créer l'objet qui dessine l'attaque (pour certaines attaques)
