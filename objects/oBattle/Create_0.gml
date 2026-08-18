@@ -5,6 +5,7 @@
 global.turn = "player"
 global.turn_number = 1
 global.boss_turn_timer = 0
+global.boss_turn_time = 60*global.boss_turn_seconds
 to_boss_timer = 0
 to_boss_min_time = 36
 
@@ -131,7 +132,7 @@ box_target_width = box_default_width
 
 box_default_height = 70
 box_min_height = 26
-box_max_height = 144
+box_max_height = 135
 box_height = box_default_height
 box_target_height = box_default_height
 

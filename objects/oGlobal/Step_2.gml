@@ -13,6 +13,7 @@ if global.debug
 		if room != Battle {room_goto(Battle)}
 		else {room_goto(Menu)}}
 	if keyboard_check_pressed(vk_f2) {global.enable_music = !global.enable_music}
+	if keyboard_check_pressed(vk_f3) {global.turn = "boss"}
 }
 
 // Manette

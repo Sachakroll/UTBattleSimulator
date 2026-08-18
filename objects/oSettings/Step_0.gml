@@ -82,7 +82,7 @@ if selected_option = 5
 {
 	if pressed("r", 1) && global.boss_turn_seconds < max_turn_dur {global.boss_turn_seconds ++
 		if pressed("r", 0) {audio_play_sound(snd_choice, 1, 0, 1)}}
-	if pressed("l", 1) && global.boss_turn_seconds > 1 {global.boss_turn_seconds --
+	if pressed("l", 1) && global.boss_turn_seconds > min_turn_dur {global.boss_turn_seconds --
 		if pressed("l", 0) {audio_play_sound(snd_choice, 1, 0, 1)}}
 	if pressed("z", 0)
 	{
@@ -90,6 +90,7 @@ if selected_option = 5
 		else {global.boss_turn_seconds = 1}
 		audio_play_sound(snd_choice, 1, 0, 1)
 	}
+	global.boss_turn_time = 60*global.boss_turn_seconds
 }
 
 if selected_option = 6

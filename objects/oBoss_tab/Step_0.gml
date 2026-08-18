@@ -1,6 +1,7 @@
 // Sélection du boss
 
-if mouse_check_button_pressed(mb_left) && mouse_y > 0 && mouse_y < 25 && global.turn != "end" && global.turn != "flee"
+if mouse_check_button_pressed(mb_left) && mouse_y > 0 && mouse_y < 25
+&& global.turn != "end" && global.turn != "flee"
 {
 	if mouse_x > 258 && mouse_x < 277
 	{global.selected_boss --}
@@ -20,6 +21,8 @@ if mouse_check_button_pressed(mb_left) && mouse_y > 0 && mouse_y < 25 && global.
 		if global.turn = "player"
 		{oBattle.current_dialog = random_dialog()
 			oBattle.rendered_characters = [0, 0, 0]}
+		
+		oBoss.reset_animations()
 	}
 }
 

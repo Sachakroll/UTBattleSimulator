@@ -241,9 +241,9 @@ if type = "blaster"
 	if x > 620 || x < -300 || y > 540 || y < -300 {destroy_self()}
 	show_debug_message(image_angle)
 	
-	collision_box[0].x1 = x-blast_collison_width_scale*blast_width/2
+	collision_box[0].x1 = x-scale*blast_collison_width_scale*blast_width/2
 	collision_box[0].y1 = y+blast_dist
-	collision_box[0].x2 = x+blast_collison_width_scale*blast_width/2
+	collision_box[0].x2 = x+scale*blast_collison_width_scale*blast_width/2
 	collision_box[0].y2 = y+blast_dist+blast_reach
 	collision_box[0].rot = angle
 	collision_box[0].rot_x = x

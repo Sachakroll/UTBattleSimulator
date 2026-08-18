@@ -20,7 +20,7 @@ function sprite_from_boss(_boss_name)
 {
 	if _boss_name = "Toriel" {return sBoss_toriel}
 	if _boss_name = "Papyrus" {return sBoss_papyrus}
-	if _boss_name = "Sans" {return sBoss_sans}
+	if _boss_name = "Sans" {return sBoss_sans_legs}
 }
 
 function boss_exp(_boss_name)

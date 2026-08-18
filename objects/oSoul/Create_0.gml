@@ -25,6 +25,8 @@ function damage_soul(dealt_dmg, eventual_object_to_destroy)
 		dmg_timer = 0
 		if eventual_object_to_destroy != noone
 		{eventual_object_to_destroy.destroy_self()}
+		
+		if global.player_hp <= 0 && global.boss_name = "Toriel" {oBoss.image_index = 1}
 	}
 }
 

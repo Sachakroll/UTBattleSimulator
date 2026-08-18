@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"sBoss_act_blaster_1",
   "bboxMode":0,
-  "bbox_bottom":71,
+  "bbox_bottom":67,
   "bbox_left":0,
   "bbox_right":55,
   "bbox_top":0,
@@ -17,7 +17,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":72,
+  "height":68,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"eff5da68-73b2-4200-befe-76b0b3d58dac","blendMode":0,"displayName":"default","isLocked":false,"name":"eff5da68-73b2-4200-befe-76b0b3d58dac","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
