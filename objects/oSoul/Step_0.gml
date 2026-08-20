@@ -5,15 +5,24 @@ if global.turn = "boss"
 	move_x = pressed("r", 1) - pressed("l", 1)
 	move_y = pressed("d", 1) - pressed("u", 1)
 	
+	// Âme rouge
 	if global.soulmode = 0
-	{hsp = move_x
-		vsp = move_y}
+	{
+		hsp = move_x
+		vsp = move_y
+	}
+	
+	// Âme bleue
 	if global.soulmode = 1
 	{
-		if y + vsp >= oBattle.box_bottom - wall_dist - 2
+		if gravity_dir != old_gravity_dir
+		{gravity_speed = switch_gravity_speed(old_gravity_dir, gravity_dir)}
+		
+		if soul_is_on_ground(x + hsp, y + vsp, 3)
 		{
+			wall_slam = false
 			jump_timer = 0
-			if pressed("u", 0) {jumping = true}
+			if button_jump_pressed() {jumping = true}
 		}
 		if jumping
 		{
@@ -24,40 +33,58 @@ if global.turn = "boss"
 		    }
 		    else {jumping = false}
 		}
-		if keyboard_check_released(vk_up) || !pressed("u", 1) {jumping = false
-			if gravity_speed = -jump_v {gravity_speed = -jump_v/2}}
-		
-		if y >= oBattle.box_bottom - wall_dist - 2
+		if button_jump_not_pressed()
 		{
-			if !jumping {gravity_speed = 0}
-			}
-		else
-		{
-			if gravity_speed > 0 && gravity_speed < 0.28
-			{gravity_speed += 0.035}
-			else {gravity_speed += gravity_acc}
+			jumping = false
+			if gravity_speed = -jump_v {gravity_speed = -jump_v/2}
 		}
 		
-		hsp = move_x
-		vsp = gravity_speed
+		if !soul_is_on_ground(x, y, 1)
+		{
+			if wall_slam {gravity_speed += wall_slam_gravity_acc}
+			else {
+				if gravity_speed > 0 && gravity_speed < 0.28 {gravity_speed += smaller_gravity_acc}
+				else {gravity_speed += gravity_acc}
+			}
+		}
+		show_debug_message(gravity_speed)
+		
+		if gravity_dir = "up" || gravity_dir = "down"
+		{
+			hsp = move_x
+			vsp = gravity_speed * (2*(gravity_dir="down")-1)
+		}
+		if gravity_dir = "left" || gravity_dir = "right"
+		{
+			hsp = gravity_speed * (2*(gravity_dir="right")-1)
+			vsp = move_y
+		}
 	}
-	else {gravity_speed = 0
-		input_vsp = 0
-		jumping = false}
+	else
+	{
+		gravity_speed = 0
+		jumping = false
+		wall_slam = false
+	}
+	
+	// Collision avec le cadre
 	
 	if x + hsp > 160 + (oBattle.box_width/2) - wall_dist - 1
-	{x = 160 + (oBattle.box_width/2) - wall_dist - 1}
+	{x = 160 + (oBattle.box_width/2) - wall_dist - 1
+		if gravity_dir = "right" {gravity_speed = 0}}
 	else {
 		if x + hsp < 160 - (oBattle.box_width/2) + wall_dist + 0.25
-		{x = 160 - (oBattle.box_width/2) + wall_dist + 0.25}
+		{x = 160 - (oBattle.box_width/2) + wall_dist + 0.25
+			if gravity_dir = "left" {gravity_speed = 0}}
 		else {x += hsp}
 	}
 	if y + vsp > oBattle.box_bottom - wall_dist - 1
 	{y = oBattle.box_bottom - wall_dist - 1
-		gravity_speed = 0}
+		if gravity_dir = "down" {gravity_speed = 0}}
 	else {
 		if y + vsp < oBattle.box_bottom-oBattle.box_height + wall_dist + 0.25
-		{y = oBattle.box_bottom-oBattle.box_height + wall_dist + 0.25}
+		{y = oBattle.box_bottom-oBattle.box_height + wall_dist + 0.25
+			if gravity_dir = "up" {gravity_speed = 0}}
 		else {y += vsp}
 	}
 	
@@ -130,6 +157,16 @@ else
 	image_speed = 0
 	
 	image_index = global.soulmode
+	
+	if global.soulmode = 1 && gravity_dir != "down"
+	{
+		switch gravity_dir
+		{
+			case "right" : image_index = global.soulmodes_count ; break
+			case "up" : image_index = global.soulmodes_count + 1 ; break
+			case "left" : image_index = global.soulmodes_count + 2 ; break
+		}
+	}
 }
 
 if global.turn != "boss" && global.turn != "player" && global.turn != "flee"

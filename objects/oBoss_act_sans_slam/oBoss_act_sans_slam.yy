@@ -1,19 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"oSoul",
+  "%Name":"oBoss_act_sans_slam",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"oSoul",
+  "name":"oBoss_act_sans_slam",
   "overriddenProperties":[],
   "parent":{
     "name":"Objets",
     "path":"folders/Objets.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oBoss_act",
+    "path":"objects/oBoss_act/oBoss_act.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -32,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sSoul",
-    "path":"sprites/sSoul/sSoul.yy",
+    "name":"sBoss_act_sans_slam",
+    "path":"sprites/sBoss_act_sans_slam/sBoss_act_sans_slam.yy",
   },
   "spriteMaskId":null,
   "visible":true,

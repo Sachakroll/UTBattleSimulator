@@ -18,10 +18,10 @@ function reset_animations()
 	anim_timer = 0
 	
 	// Sans
-	sans_torso_rel_x = 0
-	sans_torso_rel_y = 0
-	sans_head_rel_x = 0
-	sans_head_rel_y = 0
+	sans_torso_rel_x = -1/2
+	sans_torso_rel_y = -1/2
+	sans_head_rel_x = -1/2
+	sans_head_rel_y = -1/2
 }
 
 reset_animations()

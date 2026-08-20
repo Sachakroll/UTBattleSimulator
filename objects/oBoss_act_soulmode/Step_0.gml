@@ -1,4 +1,4 @@
-if global.turn != "end" && global.turn != "flee"
+if global.turn != "end" && global.turn != "flee" && oBattle.boss_atk_cooldown = 0
 && mouse_x >= x + 1 && mouse_x < x + sprite_width - 1
 && mouse_y >= y && mouse_y < y + sprite_height - 1
 {

@@ -14,6 +14,9 @@
   "frames":[
     {"$GMSpriteFrame":"v1","%Name":"7471434b-9c9b-4f84-ab9b-53be0f28d05f","name":"7471434b-9c9b-4f84-ab9b-53be0f28d05f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"e9276188-b6f5-406f-9194-8dea93ac5ab2","name":"e9276188-b6f5-406f-9194-8dea93ac5ab2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"ae330fa4-e944-423b-816f-861aa9eac2c9","name":"ae330fa4-e944-423b-816f-861aa9eac2c9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e7bfdba1-0627-4937-8f99-77390782dc78","name":"e7bfdba1-0627-4937-8f99-77390782dc78","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"9f77702e-a399-4854-adcd-87dd68f88249","name":"9f77702e-a399-4854-adcd-87dd68f88249","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -50,7 +53,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":2.0,
+    "length":5.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -75,6 +78,15 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e9276188-b6f5-406f-9194-8dea93ac5ab2","path":"sprites/sSoul_damaged/sSoul_damaged.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"34875dd5-cfe1-48a2-a830-9f35874acb0c","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ae330fa4-e944-423b-816f-861aa9eac2c9","path":"sprites/sSoul_damaged/sSoul_damaged.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"a76448cd-074a-4e35-8f16-650ebf5fe6ff","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e7bfdba1-0627-4937-8f99-77390782dc78","path":"sprites/sSoul_damaged/sSoul_damaged.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ef876663-370d-4417-b6ee-d3b3ccf4f69a","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9f77702e-a399-4854-adcd-87dd68f88249","path":"sprites/sSoul_damaged/sSoul_damaged.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c5c53598-cd9f-44c2-8714-8cb65d24cb3e","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

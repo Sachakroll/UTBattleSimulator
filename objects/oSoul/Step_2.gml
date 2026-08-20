@@ -1,0 +1,1 @@
+if global.soulmode = 1 {old_gravity_dir = gravity_dir}

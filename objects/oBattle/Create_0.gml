@@ -112,6 +112,22 @@ blaster_scale = 1
 atklaunching_initial_mouse_x = 0
 atklaunching_initial_mouse_y = 0
 
+// Atk sans slam
+
+sans_slam_mouse_tolerance = 5
+sans_slam_atk_cooldown_time = 6
+sans_slam_old_soulmode = 0
+sans_slam_timer = -1
+sans_slam_atk_time = 45
+sans_slam_has_been_reinitialized = true
+function reinit_soul_after_sans_slam()
+{
+	sans_slam_timer = -1
+	sans_slam_has_been_reinitialized = true
+	global.soulmode = sans_slam_old_soulmode
+	oSoul.gravity_dir = "down"
+}
+
 // Action resize
 
 resize_tolerance = 10
@@ -141,6 +157,8 @@ box_target_height = box_default_height
 function boss_reinit_variables()
 {
 	blaster_spawn_timer = -1
+	if sans_slam_timer != - 1 && sans_slam_timer < sans_slam_atk_time
+	{reinit_soul_after_sans_slam()}
 }
 
 // Fin du combat

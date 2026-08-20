@@ -260,7 +260,7 @@ if global.turn = "boss"
 	
 	// Cooldown d'attaque
 	if boss_atk_cooldown != 0 {boss_atk_cooldown --}
-	boss_can_attack = boss_atk_cooldown = 0 && !boss_action_was_just_selected
+	boss_can_attack = (boss_atk_cooldown = 0) && !boss_action_was_just_selected
 	
 	// Redimensionner le cadre
 	if global.selected_boss_action = "resize"
@@ -465,6 +465,51 @@ if global.turn = "boss"
 		}
 		else {if blaster_spawn_timer >= blaster_max_spawn_delay
 		{blaster_spawn_timer = -1}}
+	}
+	
+	// Atk sans slam
+	if global.selected_boss_action = "atk sans slam" && boss_can_attack
+	{
+		if mouse_check_button_pressed(mb_left)
+		{
+			var slam_dir = ""
+			if mouse_y >= oBattle.box_bottom-oBattle.box_height - sans_slam_mouse_tolerance
+			&& mouse_y <= oBattle.box_bottom + sans_slam_mouse_tolerance
+			{
+				if mouse_x <= 160-oBattle.box_width/2 + sans_slam_mouse_tolerance
+				{slam_dir = "left"}
+				if mouse_x >= 160+oBattle.box_width/2 - sans_slam_mouse_tolerance
+				{slam_dir = "right"}
+			}
+			
+			if mouse_x >= 160-oBattle.box_width/2 - sans_slam_mouse_tolerance
+			&& mouse_x <= 160+oBattle.box_width/2 + sans_slam_mouse_tolerance
+			{
+				if mouse_y <= oBattle.box_bottom-oBattle.box_height + sans_slam_mouse_tolerance
+				{slam_dir = "up"}
+				if mouse_y >= oBattle.box_bottom - sans_slam_mouse_tolerance
+				{slam_dir = "down"}
+			}
+			
+			if slam_dir != ""
+			{
+				boss_atk_cooldown = sans_slam_atk_cooldown_time
+				if sans_slam_has_been_reinitialized {sans_slam_old_soulmode = global.soulmode}
+				sans_slam_timer = 0
+				
+				global.soulmode = 1
+				oSoul.jumping = false
+				oSoul.wall_slam = true
+				oSoul.gravity_dir = slam_dir
+				sans_slam_has_been_reinitialized = false
+			}
+		}
+	}
+	if sans_slam_timer != -1
+	{
+		sans_slam_timer ++
+		if sans_slam_timer >= sans_slam_atk_time && oSoul.wall_slam = false
+		{reinit_soul_after_sans_slam()}
 	}
 }
 else {boss_reinit_variables()}
